@@ -26,6 +26,8 @@ export class AuthService {
   }
 
   register(email: string, password: string): firebase.Promise<any> {
+    // insert data in firebase auth
+    // insert data in firebase database realtime
     return this.fireAuth.createUserWithEmailAndPassword(email, password)
       .then((newUser) => {
         this.userData.child(newUser.uid).set({email: email});

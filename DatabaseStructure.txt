@@ -1,0 +1,20 @@
+// Entities
+
+Auth: { 
+    $uid: {
+        email: String,
+        password: String, (hidden)
+    }
+}
+// To do forget password process
+
+Users: {
+    $uid: {
+        accessrole: String, // i.e. 'admin, user, dormprovider' (default: access)
+        email: String, (default: from Firebase auth)
+        username, (default: null)
+        fullname (default: null)
+    }
+}
+// To edit user access
+

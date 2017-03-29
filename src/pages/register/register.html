@@ -18,6 +18,13 @@
     <!--<form [formGroup]="registerForm" (submit)="doRegister()" novalidate>-->
     <form [formGroup]="registerForm" novalidate>
         <ion-item>
+            <ion-label stacked>Full Name</ion-label>
+            <ion-input #fullname formControlName="fullname" type="text" (change)="elementChanged(fullname)" placeholder="Your Full Name" [class.invalid]="!registerForm.controls.fullname.valid && (fullnameChanged || submitAttempt)"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!registerForm.controls.fullname.valid && (fullnameChanged || submitAttempt)">
+            <p>Your full name can't empty.</p>
+        </ion-item>
+        <ion-item>
             <ion-label stacked>Email</ion-label>
             <ion-input #email formControlName="email" type="email" (change)="elementChanged(email)" placeholder="Your email address" [class.invalid]="!registerForm.controls.email.valid && (emailChanged || submitAttempt)"></ion-input>
         </ion-item>
@@ -32,11 +39,16 @@
             <p>Your password needs more than 6 characters.</p>
         </ion-item>
         <ion-item>
-            <ion-label stacked>Full Name</ion-label>
-            <ion-input #fullname formControlName="fullname" type="text" (change)="elementChanged(fullname)" placeholder="Your Full Name" [class.invalid]="!registerForm.controls.fullname.valid && (fullnameChanged || submitAttempt)"></ion-input>
+            <ion-label stacked>Confirm Password</ion-label>
+            <ion-input #confirmpassword formControlName="confirmpassword" type="password" placeholder="Confirm Password"></ion-input>
         </ion-item>
-        <ion-item class="error-message" *ngIf="!registerForm.controls.fullname.valid && (fullnameChanged || submitAttempt)">
-            <p>Your full name can't empty.</p>
+        <ion-item>
+            <ion-label stacked>Access</ion-label>
+            <ion-select>
+                <ion-option value="user" selected="true">User</ion-option>
+                <ion-option value="dormprovider">Dorm Provider</ion-option>
+                <ion-option value="admin">Administrator</ion-option>
+            </ion-select>
         </ion-item>
         <button ion-button block (click)="doRegister()">
             Register
