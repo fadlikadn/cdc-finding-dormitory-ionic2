@@ -41,6 +41,23 @@ export class DatabaseUser {
     }
   }
 
+  renderPromise(): Promise<any> {
+    return new Promise((resolve) => {
+      let users: any = [];
+      // let getRef = firebase.database().ref('users');
+      firebase.database().ref('users').orderByKey().on('value', (items: any) => {
+        items.forEach((item) => {
+          users.push(item.val());
+        });
+      },
+      (error) => {
+        console.log(error);
+      } );
+      console.log(users);
+      resolve(users);
+    })
+  }
+
   delete(id): Promise<any> {
     return new Promise((resolve) => {
       resolve(true);

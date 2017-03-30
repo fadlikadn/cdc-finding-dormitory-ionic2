@@ -46,6 +46,8 @@ export class UserListPage {
 
   loadAndParseUsers() {
     this.users = this.databaseUser.render();
+    // this.users = this.databaseUser.renderPromise();
+    console.log(this.users);
     this.loadedUsers = this.users;
     
     this._LOADER.hidePreloader();
@@ -53,6 +55,11 @@ export class UserListPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserListPage');
+  }
+
+  filterUsers() {
+    console.log(this.users);
+    // put filter logic here
   }
 
 }
