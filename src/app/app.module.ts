@@ -3,10 +3,12 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
-import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
+
+import { HomePage } from '../pages/home/home';
+import { UserListPage } from '../pages/user-list/user-list';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -16,6 +18,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth-service';
 import { DatabaseUser } from '../providers/database-user';
+import { Preloader } from '../providers/preloader';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAYy7LtPwxu_PB9mEqxkbp1GvMaJxB7hJA",
@@ -41,6 +44,7 @@ firebase.initializeApp(firebaseConfig);
     LoginPage,
     RegisterPage,
     ResetpwdPage,
+    UserListPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -55,6 +59,7 @@ firebase.initializeApp(firebaseConfig);
     LoginPage,
     RegisterPage,
     ResetpwdPage,
+    UserListPage,
   ],
   providers: [
     StatusBar,
@@ -62,6 +67,7 @@ firebase.initializeApp(firebaseConfig);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     DatabaseUser,
+    Preloader,
   ]
 })
 export class AppModule {}

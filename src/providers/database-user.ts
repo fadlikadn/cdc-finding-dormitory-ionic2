@@ -20,7 +20,20 @@ export class DatabaseUser {
   render(): Observable<any> {
     try {
       return new Observable(observer => {
+        let users: any = [];
+        firebase.database().ref('users').orderByKey().once('value', (items: any) => {
+          items.forEach((item) => {
+            users.push(item.val());
+          });
 
+          observer.next(users);
+          observer.complete();
+        },
+        (error) => {
+          console.log("Observer error: ", error);
+          console.dir(error);
+          observer.error(error);
+        });
       });
     } catch (error) {
       console.log('Observable for retrieving user fails');

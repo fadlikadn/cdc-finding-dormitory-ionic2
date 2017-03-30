@@ -40,7 +40,7 @@ export class RegisterPage {
       email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_REGEXP)])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirmpassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-      access: [''],
+      access: ['', Validators.compose([Validators.required])],
     });
   }
 
