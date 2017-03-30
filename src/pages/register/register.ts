@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
+import { DatabaseUser } from '../../providers/database-user';
 import { Page1 } from '../page1/page1';
 import { HomePage } from '../home/home';
 
@@ -25,8 +26,9 @@ export class RegisterPage {
   loading: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public authService: AuthService,
+    public databaseUser: DatabaseUser,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
@@ -38,6 +40,7 @@ export class RegisterPage {
       email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_REGEXP)])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirmpassword: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      access: [''],
     });
   }
 
@@ -49,11 +52,37 @@ export class RegisterPage {
 
   doRegister() {
     this.submitAttempt = true;
+    // console.log(this.registerForm.value.fullname);
+    // console.log(this.registerForm.value.email);
+    // console.log(this.registerForm.value.password);
+    // console.log(this.registerForm.value.confirmpassword);
+    // console.log(this.registerForm.value.access);
 
     if (!this.registerForm.valid) {
       console.log(this.registerForm.value);
     } else {
-      this.authService.register(this.registerForm.value.email, this.registerForm.value.password).then(authService => {
+      // let userId = this.authService.register(this.registerForm.value.email, this.registerForm.value.password).then(authService => {
+      let userId = this.authService.register(this.registerForm.value.email, this.registerForm.value.password, {
+        fullname: this.registerForm.value.fullname,
+        email: this.registerForm.value.email,
+        password: this.registerForm.value.password,
+        confirmpassword: this.registerForm.value.confirmpassword,
+        access: this.registerForm.value.access,
+      }).then(authService => {
+        let uservalue = {
+          userid: authService,
+          fullname: this.registerForm.value.fullname,
+          email: this.registerForm.value.email,
+          password: this.registerForm.value.password,
+          confirmpassword: this.registerForm.value.confirmpassword,
+          access: this.registerForm.value.access,
+        };
+        // console.log('User Value');
+        // console.log(uservalue);
+        // this.databaseUser.add(uservalue);
+
+        // console.log('Auth Service');
+        // console.log(authService);
         this.navCtrl.setRoot(HomePage);
       }, error => {
         this.loading.dismiss().then(() => {
@@ -69,6 +98,8 @@ export class RegisterPage {
           alert.present();
         });
       });
+      console.log('User Id');
+      console.log(userId);
 
       this.loading = this.loadingCtrl.create({
         // dismissOnPageChange: true,
