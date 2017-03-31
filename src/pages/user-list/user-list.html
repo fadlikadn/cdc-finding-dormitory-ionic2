@@ -35,11 +35,11 @@
                 <p>{{ user.email }} / {{ user.access }}</p>
             </ion-item>
             <ion-item-options>
-                <button ion-button color="primary" icon-left>
+                <button ion-button text-center color="primary" icon-left (click)="editUser(user)">
                     <ion-icon name="edit"></ion-icon>
                     Edit
                 </button>
-                <button ion-button color="secondary" icon-left>
+                <button ion-button text-center color="secondary" icon-left>
                     <ion-icon name="delete"></ion-icon>
                     Delete
                 </button>

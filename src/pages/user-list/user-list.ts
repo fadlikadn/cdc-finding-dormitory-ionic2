@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, Platform } from 'ionic-angular';
+import { NavController, ModalController, NavParams, Platform } from 'ionic-angular';
 import 'rxjs/add/operator/map';
 import { AuthService } from '../../providers/auth-service';
 import { DatabaseUser } from '../../providers/database-user';
@@ -9,6 +9,9 @@ import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 import 'rxjs/Rx';
 import 'rxjs/add/operator/debounceTime';
+
+import { LoginPage } from '../login/login';
+import { ModalsUserPage } from '../modals-user/modals-user';
 
 /*
   Generated class for the UserList page.
@@ -24,16 +27,23 @@ export class UserListPage {
 
   public users: any;
   // public usersMap: any;
-  public loadedUsers: any;
+  // public loadedUsers: any;
   public searchTerm: string = '';
   public searchControl: FormControl;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     public databaseUser: DatabaseUser,
     private platform: Platform,
-    private _LOADER: Preloader) {
+    private _LOADER: Preloader,
+    private modalCtrl: ModalController) {
+
+    firebase.auth().onAuthStateChanged(function(user) {
+      if (!user) {
+        navCtrl.setRoot(LoginPage);
+      }
+    });
     this.searchControl = new FormControl();
   }
 
@@ -48,7 +58,7 @@ export class UserListPage {
     this.users = this.databaseUser.render();
     // this.users = this.databaseUser.renderPromise();
     console.log(this.users);
-    this.loadedUsers = this.users;
+    // this.loadedUsers = this.users;
     
     this._LOADER.hidePreloader();
   }
@@ -60,6 +70,20 @@ export class UserListPage {
   filterUsers() {
     console.log(this.users);
     // put filter logic here
+  }
+
+  editUser(user) {
+    let params = { user: user };
+    let modal = this.modalCtrl.create(ModalsUserPage, params);
+
+    modal.onDidDismiss((data) => {
+      if (data) {
+          this._LOADER.displayPreloader();
+          this.loadAndParseUsers();
+          console.log('edit user dismissed');
+      }
+    });
+    modal.present();
   }
 
 }

@@ -13,6 +13,8 @@ import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseUser {
 
+  public currentUser: any;
+
   constructor(public http: Http) {
     console.log('Hello DatabaseUser Provider');
   }
@@ -41,24 +43,10 @@ export class DatabaseUser {
     }
   }
 
-  renderPromise(): Promise<any> {
-    return new Promise((resolve) => {
-      let users: any = [];
-      // let getRef = firebase.database().ref('users');
-      firebase.database().ref('users').orderByKey().on('value', (items: any) => {
-        items.forEach((item) => {
-          users.push(item.val());
-        });
-      },
-      (error) => {
-        console.log(error);
-      } );
-      console.log(users);
-      resolve(users);
-    })
-  }
-
   delete(id): Promise<any> {
+
+    // Delete firebase auth data
+
     return new Promise((resolve) => {
       resolve(true);
     });
@@ -72,8 +60,24 @@ export class DatabaseUser {
     });
   }
 
-  updateDatabase(id, userObj): Promise<any> {
+  update(id, userObj): Promise<any> {
+
+    console.log(id);
+    console.log(userObj);
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //   if (user) {
+    //     this.currentUser = user;
+    //   } else {
+    //     this.currentUser = null;
+    //   }
+    // });
+    // console.log(this.currentUser);
+
     return new Promise((resolve) => {
+      // Update firebase auth data
+
+      var updateRef = firebase.database().ref('users').child(id);
+      updateRef.update(userObj);
       resolve(true);
     });
   }

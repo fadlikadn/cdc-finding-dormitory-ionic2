@@ -41,6 +41,9 @@ export class AuthService {
         // insert data in firebase database realtime
         // this.userData.child(newUser.uid).set({email: email});
         // Add Users Data to Firebase Database
+        console.log(newUser);
+        user.id = newUser.uid;
+        console.log(user);
         this.userData.child(newUser.uid).set(user);
         // console.log(newUser.uid);
         return newUser.uid;

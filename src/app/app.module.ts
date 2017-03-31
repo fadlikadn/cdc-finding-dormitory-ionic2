@@ -9,6 +9,7 @@ import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
 
 import { HomePage } from '../pages/home/home';
 import { UserListPage } from '../pages/user-list/user-list';
+import { ModalsUserPage } from '../pages/modals-user/modals-user';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -45,6 +46,7 @@ firebase.initializeApp(firebaseConfig);
     RegisterPage,
     ResetpwdPage,
     UserListPage,
+    ModalsUserPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -60,6 +62,7 @@ firebase.initializeApp(firebaseConfig);
     RegisterPage,
     ResetpwdPage,
     UserListPage,
+    ModalsUserPage,
   ],
   providers: [
     StatusBar,
