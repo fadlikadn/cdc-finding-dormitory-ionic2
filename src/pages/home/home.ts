@@ -5,6 +5,8 @@ import { LoginPage } from '../login/login';
 
 import * as firebase from 'firebase';
 import { AuthService } from '../../providers/auth-service';
+import { TabAroundPage } from '../tab-around/tab-around';
+import { TabAreaPage } from '../tab-area/tab-area';
 
 /*
   Generated class for the Home page.
@@ -19,6 +21,8 @@ import { AuthService } from '../../providers/auth-service';
 export class HomePage {
 
   public authService: AuthService;
+  public tabAround: any = TabAroundPage;
+  public tabArea: any = TabAreaPage;
 
   constructor(
     public navCtrl: NavController, 

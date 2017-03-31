@@ -11,6 +11,12 @@ import { HomePage } from '../pages/home/home';
 import { UserListPage } from '../pages/user-list/user-list';
 import { ModalsUserPage } from '../pages/modals-user/modals-user';
 
+import { TabAroundPage } from '../pages/tab-around/tab-around';
+import { TabAreaPage } from '../pages/tab-area/tab-area';
+
+import { AroundListPage } from '../pages/around-list/around-list';
+import { AroundMapPage } from '../pages/around-map/around-map';
+
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
 
@@ -47,6 +53,10 @@ firebase.initializeApp(firebaseConfig);
     ResetpwdPage,
     UserListPage,
     ModalsUserPage,
+    TabAroundPage,
+    TabAreaPage,
+    AroundListPage,
+    AroundMapPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -63,6 +73,10 @@ firebase.initializeApp(firebaseConfig);
     ResetpwdPage,
     UserListPage,
     ModalsUserPage,
+    TabAroundPage,
+    TabAreaPage,
+    AroundListPage,
+    AroundMapPage,
   ],
   providers: [
     StatusBar,
