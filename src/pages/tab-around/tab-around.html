@@ -30,10 +30,10 @@
         </ion-segment-button>
     </ion-segment>
 
-    <div [ngSwitch]="around">
+    <div class="content-wrapper" [ngSwitch]="around">
         <div *ngSwitchCase="'list'">
             <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
-            <!--<ion-scroll direction="xy">-->
+            <!--<ion-scroll scrollY="true" class="dorm-list">-->
             <ion-list>
                 <ion-item>
                     <h2>Dorm 1</h2>
@@ -88,10 +88,10 @@
             </ion-list>
             <!--</ion-scroll>-->
         </div>
-        <div *ngSwitchCase="'map'">
+        <div *ngSwitchCase="'map'" #mapcanvas id="mapcanvas">
             <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
             <!--Map Content-->
-            <div id="map"></div>
+            <!--<div #map id="map"></div>-->
             <!--<div #map id="map"></div>-->
         </div>
     </div>
