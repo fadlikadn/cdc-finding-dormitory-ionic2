@@ -19,7 +19,7 @@
     <ion-tab [root]="aroundMap" tabTitle="Map">Map</ion-tab>
 </ion-tabs>-->
 
-<ion-content padding>
+<ion-content>
     <!--Around-->
     <ion-segment [(ngModel)]="around" color="primary">
         <ion-segment-button value="list">
@@ -32,10 +32,67 @@
 
     <div [ngSwitch]="around">
         <div *ngSwitchCase="'list'">
-            List Content
+            <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
+            <!--<ion-scroll direction="xy">-->
+            <ion-list>
+                <ion-item>
+                    <h2>Dorm 1</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 2</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 3</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 4</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 5</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 6</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 7</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 8</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 9</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+                <ion-item>
+                    <h2>Dorm 10</h2>
+                    <h3>Located on Kalasan Sleman</h3>
+                    <p>Feature : Bedroom, table, chair, AC</p>
+                </ion-item>
+            </ion-list>
+            <!--</ion-scroll>-->
         </div>
         <div *ngSwitchCase="'map'">
-            Map Content
+            <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
+            <!--Map Content-->
+            <div id="map"></div>
+            <!--<div #map id="map"></div>-->
         </div>
     </div>
 </ion-content>

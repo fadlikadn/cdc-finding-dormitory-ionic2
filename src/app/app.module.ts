@@ -27,6 +27,8 @@ import { AuthService } from '../providers/auth-service';
 import { DatabaseUser } from '../providers/database-user';
 import { Preloader } from '../providers/preloader';
 
+import { ConnectivityService } from '../providers/connectivity-service';
+
 export const firebaseConfig = {
   apiKey: "AIzaSyAYy7LtPwxu_PB9mEqxkbp1GvMaJxB7hJA",
   authDomain: "finding-dormitory.firebaseapp.com",
@@ -85,6 +87,7 @@ firebase.initializeApp(firebaseConfig);
     AuthService,
     DatabaseUser,
     Preloader,
+    ConnectivityService
   ]
 })
 export class AppModule {}
