@@ -6,13 +6,98 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>modals-dorm</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <ion-title>{{ title }}</ion-title>
+        <ion-buttons start>
+            <button ion-button color="primary" (click)="closeModal()">
+              <span showWhen="ios">Cancel</span>
+              <ion-icon name="md-close" showWhen="android,windows"></ion-icon>
+          </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+    <form [formGroup]="dormForm">
+        <ion-item-divider color="light">
+            <div *ngIf="!isEditable">
+                Add a new dorm
+            </div>
 
+            <div *ngIf="isEditable">
+                Update dorm
+            </div>
+        </ion-item-divider>
+
+        <ion-item>
+            <ion-label stacked>Name: </ion-label>
+            <ion-input type="text" formControlName="name" [(ngModel)]="dormName" placeholder="Name"></ion-input>
+        </ion-item>
+        <ion-item class="error-message" *ngIf="!dormForm.controls.name.valid && (nameChanged || submitAttempt)">
+            <p>Dorm's name needs more than 4 characters</p>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Room Facility: </ion-label>
+            <ion-select formControlName="roomFacility" multiple="true" [(ngModel)]="dormRoomFacility">
+                <ion-option value="Bed">Bed</ion-option>
+                <ion-option value="Cabinet">Cabinet</ion-option>
+                <ion-option value="TV">TV</ion-option>
+                <ion-option value="AC">AC</ion-option>
+                <ion-option value="table">Table</ion-option>
+                <ion-option value="Wifi">Wifi</ion-option>
+                <ion-option value="Chair">Chair</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Bathroom</ion-label>
+            <ion-select formControlName="bathroom" multiple="true" [(ngModel)]="dormBathroom">
+                <ion-option value="Private">Private Bathroom</ion-option>
+                <ion-option value="ToiletSeat">Toilet Seat</ion-option>
+                <ion-option value="Shower">Shower</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>General Facility</ion-label>
+            <ion-select formControlName="generalFacility" multiple="true" [(ngModel)]="dormGeneralFacility">
+                <ion-option value="Kitchen">Kitchen</ion-option>
+                <ion-option value="Laundry">Laundry</ion-option>
+                <ion-option value="Refrigerator">Refrigerator</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Parking</ion-label>
+            <ion-select formControlName="parking" multiple="true" [(ngModel)]="dormParking">
+                <ion-option value="Car">Car</ion-option>
+                <ion-option value="Motorcycle">Motorcycle</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Access Public Facility</ion-label>
+            <ion-select formControlName="publicFacility" multiple="true" [(ngModel)]="dormPublicFacility">
+                <ion-option value="Restaurant">Restaurant</ion-option>
+                <ion-option value="Minimarket">Minimarket</ion-option>
+                <ion-option value="ATMBank">ATM / Bank</ion-option>
+                <ion-option value="Drugstore">Drugstore / Clinic</ion-option>
+                <ion-option value="University">University / School</ion-option>
+                <ion-option value="BusStop">Bus Stop</ion-option>
+                <ion-option value="ShoppingCenter">Shopping Center</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <input type="hidden" name="dormId" />
+            <button ion-button block color="primary" text-center [disabled]="!dormForm.valid" (click)="saveDorm(dormForm.value)">
+                <div *ngIf="!isEditable">Add new dorm</div>
+                <div *ngIf="isEditable">Update dorm</div>
+            </button>
+        </ion-item>
+
+    </form>
 </ion-content>

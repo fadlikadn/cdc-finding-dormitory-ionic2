@@ -11,6 +11,9 @@ import { HomePage } from '../pages/home/home';
 import { UserListPage } from '../pages/user-list/user-list';
 import { ModalsUserPage } from '../pages/modals-user/modals-user';
 
+import { DormListPage } from '../pages/dorm-list/dorm-list';
+import { ModalsDormPage } from '../pages/modals-dorm/modals-dorm';
+
 import { TabAroundPage } from '../pages/tab-around/tab-around';
 import { TabAreaPage } from '../pages/tab-area/tab-area';
 
@@ -25,6 +28,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { AuthService } from '../providers/auth-service';
 import { DatabaseUser } from '../providers/database-user';
+import { DatabaseDorm } from '../providers/database-dorm';
 import { Preloader } from '../providers/preloader';
 
 import { ConnectivityService } from '../providers/connectivity-service';
@@ -55,6 +59,8 @@ firebase.initializeApp(firebaseConfig);
     ResetpwdPage,
     UserListPage,
     ModalsUserPage,
+    DormListPage,
+    ModalsDormPage,
     TabAroundPage,
     TabAreaPage,
     AroundListPage,
@@ -75,6 +81,8 @@ firebase.initializeApp(firebaseConfig);
     ResetpwdPage,
     UserListPage,
     ModalsUserPage,
+    DormListPage,
+    ModalsDormPage,
     TabAroundPage,
     TabAreaPage,
     AroundListPage,
@@ -86,6 +94,7 @@ firebase.initializeApp(firebaseConfig);
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
     DatabaseUser,
+    DatabaseDorm,
     Preloader,
     ConnectivityService
   ]

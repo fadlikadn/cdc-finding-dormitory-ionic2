@@ -30,6 +30,7 @@ export class UserListPage {
   // public loadedUsers: any;
   public searchTerm: string = '';
   public searchControl: FormControl;
+  public authService: AuthService;
 
   constructor(
     public navCtrl: NavController,
@@ -37,7 +38,8 @@ export class UserListPage {
     public databaseUser: DatabaseUser,
     private platform: Platform,
     private _LOADER: Preloader,
-    private modalCtrl: ModalController) {
+    private modalCtrl: ModalController,
+    public authServiceParams: AuthService) {
 
     firebase.auth().onAuthStateChanged(function(user) {
       if (!user) {
@@ -45,6 +47,7 @@ export class UserListPage {
       }
     });
     this.searchControl = new FormControl();
+    this.authService = authServiceParams;
   }
 
   ionViewDidEnter() {
@@ -84,6 +87,10 @@ export class UserListPage {
       }
     });
     modal.present();
+  }
+
+  logout() {
+    this.authService.doLogout();
   }
 
 }

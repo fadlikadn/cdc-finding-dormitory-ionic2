@@ -6,13 +6,79 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>dorm-list</ion-title>
-  </ion-navbar>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Dorm Management</ion-title>
+        <ion-buttons end>
+            <button ion-button icon-only (click)="addDorm()">
+                <ion-icon name="add"></ion-icon>
+            </button>
+            <button ion-button color="primary" (click)="logout()">
+                <ion-icon ios="ios-exit" md="md-exit"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+    <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="false" animated="true">
+    </ion-searchbar>
 
+    <ion-list>
+        <ion-item-sliding *ngFor="let dorm of dorms | async">
+            <ion-item>
+                <h2>Dorm 1</h2>
+                <h3>Located on Kalasan Sleman</h3>
+                <p>Feature : Bedroom, table, chair, AC</p>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button text-center color="primary" icon-left>
+                    <ion-icon name="edit"></ion-icon>
+                    Edit
+                </button>
+                <button ion-button text-center color="secondary" icon-left>
+                    <ion-icon name="delete"></ion-icon>
+                    Edit
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding>
+            <ion-item>
+                <h2>Dorm 2</h2>
+                <h3>Located on Prambanan Sleman</h3>
+                <p>Feature : Bedroom, table, chair, AC</p>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button text-center color="primary" icon-left>
+                    <ion-icon name="edit"></ion-icon>
+                    Edit
+                </button>
+                <button ion-button text-center color="secondary" icon-left>
+                    <ion-icon name="delete"></ion-icon>
+                    Edit
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+        <ion-item-sliding>
+            <ion-item>
+                <h2>Dorm 3</h2>
+                <h3>Located on Wirokerten Sleman</h3>
+                <p>Feature : Bedroom, table, chair, AC</p>
+            </ion-item>
+            <ion-item-options>
+                <button ion-button text-center color="primary" icon-left>
+                    <ion-icon name="edit"></ion-icon>
+                    Edit
+                </button>
+                <button ion-button text-center color="secondary" icon-left>
+                    <ion-icon name="delete"></ion-icon>
+                    Edit
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
 </ion-content>
