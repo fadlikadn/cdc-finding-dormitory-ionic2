@@ -31,22 +31,22 @@
     <ion-list>
         <ion-item-sliding *ngFor="let dorm of dorms | async">
             <ion-item>
-                <h2>Dorm 1</h2>
-                <h3>Located on Kalasan Sleman</h3>
-                <p>Feature : Bedroom, table, chair, AC</p>
+                <h2>{{ dorm.name }}</h2>
+                <h3>{{ dorm.$key }}</h3>
+                <p>Room Features</p>
             </ion-item>
             <ion-item-options>
-                <button ion-button text-center color="primary" icon-left>
+                <button ion-button text-center color="primary" icon-left (click)="editDorm(dorm)">
                     <ion-icon name="edit"></ion-icon>
                     Edit
                 </button>
-                <button ion-button text-center color="secondary" icon-left>
+                <button ion-button text-center color="danger" icon-left (click)="deleteDorm(dorm)">
                     <ion-icon name="delete"></ion-icon>
-                    Edit
+                    Delete
                 </button>
             </ion-item-options>
         </ion-item-sliding>
-        <ion-item-sliding>
+        <!--<ion-item-sliding>
             <ion-item>
                 <h2>Dorm 2</h2>
                 <h3>Located on Prambanan Sleman</h3>
@@ -79,6 +79,6 @@
                     Edit
                 </button>
             </ion-item-options>
-        </ion-item-sliding>
+        </ion-item-sliding>-->
     </ion-list>
 </ion-content>

@@ -33,7 +33,7 @@ export class DormListPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public databaseDorm: DatabaseDorm,
+    public _DB: DatabaseDorm,
     private platform: Platform,
     private _LOADER: Preloader,
     private modalCtrl: ModalController,
@@ -56,7 +56,7 @@ export class DormListPage {
   }
 
   loadAndParseDorms() {
-    this.dorms = this.databaseDorm.render();
+    this.dorms = this._DB.render2();
     console.log(this.dorms);
 
     this._LOADER.hidePreloader();
@@ -82,7 +82,7 @@ export class DormListPage {
   }
 
   editDorm(dorm) {
-    let params = { dorm: dorm };
+    let params = { dorm: dorm, isEdited: true };
     let modal = this.modalCtrl.create(ModalsDormPage, params);
 
     modal.onDidDismiss((data) => {
@@ -93,6 +93,13 @@ export class DormListPage {
       }
     });
     modal.present();
+  }
+
+  deleteDorm(dorm) {
+    this._LOADER.displayPreloader();
+    this._DB.delete2(dorm.id).then((data) => {
+        this.loadAndParseDorms();
+    });
   }
 
   logout() {

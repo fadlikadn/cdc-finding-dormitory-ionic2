@@ -15,12 +15,14 @@ import * as firebase from 'firebase';
 @Injectable()
 export class DatabaseDorm {
 
-  // this.dorms: FirebaseListObservable<any[]>;
+  public dorms2: FirebaseListObservable<any[]>;
+
 
   constructor(
       public http: Http,
       public angFire: AngularFire
       ) {
+    this.dorms2 = angFire.database.list('dorms');
     console.log('Hello DatabaseDorm Provider');
   }
 
@@ -48,8 +50,22 @@ export class DatabaseDorm {
     }
   }
 
+  render2(): FirebaseListObservable<any> {
+    this.dorms2 = this.angFire.database.list('dorms');
+    return this.dorms2;
+  }
+
   delete(id): Promise<any> {
     return new Promise((resolve) => {
+      let ref = firebase.database().ref('dorms').child(id);
+      ref.remove();
+      resolve(true);
+    });
+  }
+
+  delete2(id): Promise<any> {
+    return new Promise((resolve) => {
+      this.dorms2.remove(id);
       resolve(true);
     });
   }
@@ -59,7 +75,7 @@ export class DatabaseDorm {
       let addRef = firebase.database().ref('dorms');
       addRef.push(dormObj);
       resolve(true);
-    })
+    });
   }
 
   update(id, dormObj): Promise<any> {

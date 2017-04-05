@@ -92,8 +92,79 @@ export class ModalsDormPage {
   }
 
   saveDorm(val) {
-    console.log(val);
     this._LOADER.displayPreloader();
+
+    console.log(val);
+    console.log(this.dormForm.controls);
+
+    let name: string = this.dormForm.controls["name"].value;
+    let roomFacility: any = this.dormForm.controls["roomFacility"].value;
+    let bathroom: any = this.dormForm.controls["bathroom"].value;
+    let generalFacility: any = this.dormForm.controls["generalFacility"].value;
+    let parking: any = this.dormForm.controls["parking"].value;
+    let publicFacility: any = this.dormForm.controls["publicFacility"].value;
+    let roomFacilityJson: any = [];
+    let bathroomJson: any = [];
+    let generalFacilityJson: any = [];
+    let parkingJson: any = [];
+    let publicFacilityJson: any = [];
+    let k: any;
+
+    for (k in roomFacility) {
+      roomFacilityJson.push({
+        "name": roomFacility[k]
+      });
+    }
+
+    for (k in bathroom) {
+      bathroomJson.push({
+        "name": bathroom[k]
+      });
+    }
+
+    for (k in generalFacility) {
+      generalFacilityJson.push({
+        "name": generalFacility[k]
+      });
+    }
+
+    for (k in parking) {
+      parkingJson.push({
+        "name": parking[k]
+      });
+    }
+
+    for (k in publicFacility) {
+      publicFacilityJson.push({
+        "name": publicFacility[k]
+      });
+    }
+
+    if (this.isEditable) {
+      // Edit
+      this._DB.update(this.dormId, {
+        name: name,
+        roomFacility: roomFacilityJson,
+        bathroom: bathroomJson,
+        generalFacility: generalFacilityJson,
+        parking: parkingJson,
+        publicFacility: publicFacilityJson
+      }).then((data) => {
+        this._LOADER.hidePreloader();
+      });
+    } else {
+      // Add
+      this._DB.add({
+        name: name,
+        roomFacility: roomFacilityJson,
+        bathroom: bathroomJson,
+        generalFacility: generalFacilityJson,
+        parking: parkingJson,
+        publicFacility: publicFacilityJson
+      }).then((data) => {
+        this._LOADER.hidePreloader();
+      });
+    }
 
     this.closeModal(true);
   }
