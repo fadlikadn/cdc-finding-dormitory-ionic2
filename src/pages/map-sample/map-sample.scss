@@ -1,3 +1,11 @@
 page-map-sample {
-
+    ion-app.gmapscdv_ .nav-decor,
+    ._gmaps_cdv_,
+    .nav-decor {
+        background-color: rgba(0, 0, 0, 0) !important;
+    }
+    #map {
+        height: 100%;
+        width: 100%;
+    }
 }
