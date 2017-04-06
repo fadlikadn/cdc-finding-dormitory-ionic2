@@ -40,6 +40,35 @@
         </ion-item>
 
         <ion-item>
+            <ion-label stacked>Gender</ion-label>
+            <ion-select formControlName="gender" [(ngModel)]="dormGender">
+                <ion-option value="man">Man</ion-option>
+                <ion-option value="woman">Woman</ion-option>
+                <ion-option value="general">General</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Location</ion-label>
+            <ion-input type="text" formControlName="location" [(ngModel)]="dormLocation" placeholder="Location"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Price</ion-label>
+            <ion-input type="text" formControlName="price" [(ngModel)]="dormPrice" placeholder="Price"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Notes</ion-label>
+            <ion-input type="text" formControlName="notes" [(ngModel)]="dormNotes" placeholder="Notes"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label stacked>Description</ion-label>
+            <ion-input type="text" formControlName="description" [(ngModel)]="dormDescription" placeholder="Description"></ion-input>
+        </ion-item>
+
+        <ion-item>
             <ion-label stacked>Room Facility: </ion-label>
             <ion-select formControlName="roomFacility" multiple="true" [(ngModel)]="dormRoomFacility">
                 <ion-option value="Bed">Bed</ion-option>
@@ -94,8 +123,8 @@
         <ion-item>
             <input type="hidden" name="dormId" />
             <button ion-button block color="primary" text-center [disabled]="!dormForm.valid" (click)="saveDorm(dormForm.value)">
-                <div *ngIf="!isEditable">Add new dorm</div>
-                <div *ngIf="isEditable">Update dorm</div>
+                <span *ngIf="!isEditable">Add new dorm</span>
+                <span *ngIf="isEditable">Update dorm</span>
             </button>
         </ion-item>
 

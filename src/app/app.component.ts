@@ -9,6 +9,7 @@ import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { UserListPage } from '../pages/user-list/user-list';
 import { DormListPage } from '../pages/dorm-list/dorm-list';
+import { MapSamplePage } from '../pages/map-sample/map-sample';
 
 @Component({
   templateUrl: 'app.html'
@@ -31,6 +32,7 @@ export class MyApp {
       // { title: 'Page Two', component: Page2 },
       { title: 'Manage User', component: UserListPage },
       { title: 'Manage Dorm', component: DormListPage },
+      { title: 'Map Sample', component: MapSamplePage },
     ];
 
   }

@@ -34,7 +34,13 @@
         <div *ngSwitchCase="'list'">
             <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
             <!--<ion-scroll scrollY="true" class="dorm-list">-->
-            <ion-list>
+            <ion-list *ngFor="let dorm of dorms | async">
+                <ion-item>
+                    <h2>{{ dorm.name }}</h2>
+                    <h3>{{ dorm.location }}</h3>
+                    <p>Rp {{ dorm.price }} </p>
+                    <p>Features : {{ dorm.roomFacility }}</p>
+                </ion-item>
                 <ion-item>
                     <h2>Dorm 1</h2>
                     <h3>Located on Kalasan Sleman</h3>

@@ -22,6 +22,11 @@ export class ModalsDormPage {
   // public dorms: FirebaseListObservable<any[]>;
   public dorms: any;
   public dormName: any = '';
+  public dormGender: any = '';
+  public dormLocation: any = '';
+  public dormPrice: any = '';
+  public dormNotes: any = '';
+  public dormDescription: any = '';
   public dormRoomFacility: any = [];
   public dormBathroom: any = [];
   public dormGeneralFacility: any = [];
@@ -41,6 +46,11 @@ export class ModalsDormPage {
     public _DB: DatabaseDorm) {
       this.dormForm = _FB.group({
         'name': ['', Validators.compose([Validators.minLength(4), Validators.required]) ],
+        'gender': ['', Validators.compose([Validators.required])],
+        'location': ['', Validators.compose([Validators.required])],
+        'price': ['', Validators.compose([Validators.required])],
+        'notes': [''],
+        'description': [''],
         'roomFacility': [''],
         'bathroom': [''],
         'generalFacility': [''],
@@ -55,6 +65,11 @@ export class ModalsDormPage {
         let k;
         console.log(dorm);
         this.dormName = dorm.name;
+        this.dormGender = dorm.gender;
+        this.dormLocation = dorm.location;
+        this.dormPrice = dorm.price;
+        this.dormNotes = dorm.notes;
+        this.dormDescription = dorm.description;
         this.dormRoomFacility = dorm.roomFacility;
         this.dormBathroom = dorm.bathroom;
         this.dormGeneralFacility = dorm.generalFacility;
@@ -98,6 +113,11 @@ export class ModalsDormPage {
     console.log(this.dormForm.controls);
 
     let name: string = this.dormForm.controls["name"].value;
+    let gender: string = this.dormForm.controls["gender"].value;
+    let location: string = this.dormForm.controls["location"].value;
+    let price: string = this.dormForm.controls["price"].value;
+    let notes: string = this.dormForm.controls["notes"].value;
+    let description: string = this.dormForm.controls["description"].value;
     let roomFacility: any = this.dormForm.controls["roomFacility"].value;
     let bathroom: any = this.dormForm.controls["bathroom"].value;
     let generalFacility: any = this.dormForm.controls["generalFacility"].value;
@@ -144,6 +164,11 @@ export class ModalsDormPage {
       // Edit
       this._DB.update(this.dormId, {
         name: name,
+        gender: gender,
+        location: location,
+        price: price,
+        notes: notes,
+        description: description,
         roomFacility: roomFacilityJson,
         bathroom: bathroomJson,
         generalFacility: generalFacilityJson,
@@ -156,6 +181,11 @@ export class ModalsDormPage {
       // Add
       this._DB.add({
         name: name,
+        gender: gender,
+        location: location,
+        price: price,
+        notes: notes,
+        description: description,
         roomFacility: roomFacilityJson,
         bathroom: bathroomJson,
         generalFacility: generalFacilityJson,

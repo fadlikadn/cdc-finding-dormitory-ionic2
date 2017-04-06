@@ -20,6 +20,8 @@ import { TabAreaPage } from '../pages/tab-area/tab-area';
 import { AroundListPage } from '../pages/around-list/around-list';
 import { AroundMapPage } from '../pages/around-map/around-map';
 
+import { MapSamplePage } from '../pages/map-sample/map-sample';
+
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
 
@@ -65,6 +67,7 @@ firebase.initializeApp(firebaseConfig);
     TabAreaPage,
     AroundListPage,
     AroundMapPage,
+    MapSamplePage,
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -87,6 +90,7 @@ firebase.initializeApp(firebaseConfig);
     TabAreaPage,
     AroundListPage,
     AroundMapPage,
+    MapSamplePage
   ],
   providers: [
     StatusBar,
