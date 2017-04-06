@@ -31,11 +31,12 @@ export class UserListPage {
   public searchTerm: string = '';
   public searchControl: FormControl;
   public authService: AuthService;
+  public loadedUserList: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public databaseUser: DatabaseUser,
+    public _DB: DatabaseUser,
     private platform: Platform,
     private _LOADER: Preloader,
     private modalCtrl: ModalController,
@@ -48,6 +49,11 @@ export class UserListPage {
     });
     this.searchControl = new FormControl();
     this.authService = authServiceParams;
+    this.loadedUserList = this._DB.render2();
+  }
+
+  inializeItems(): void {
+    this.users = this.loadedUserList;
   }
 
   ionViewDidEnter() {
@@ -58,7 +64,8 @@ export class UserListPage {
   }
 
   loadAndParseUsers() {
-    this.users = this.databaseUser.render();
+    // this.users = this._DB.render();
+    this.users = this._DB.render2();
     // this.users = this.databaseUser.renderPromise();
     console.log(this.users);
     // this.loadedUsers = this.users;
@@ -70,9 +77,20 @@ export class UserListPage {
     console.log('ionViewDidLoad UserListPage');
   }
 
-  filterUsers() {
-    console.log(this.users);
+  filterUsers(searchbar) {
     // put filter logic here
+    // console.log(this.users);
+    this.inializeItems();
+
+    var q = searchbar.srcElement.value;
+    console.log(q);
+
+    if (!q) {
+      return;
+    }
+
+    console.log(this.users);
+    this.users = this.users.map(_users => _users.filter(user => user.email.toLowerCase().indexOf(q.toLowerCase()) >= 0));
   }
 
   editUser(user) {

@@ -23,7 +23,7 @@
 
 <ion-content>
     <!--<ion-searchbar (ionInput)="getUsers($event)" showCancelButton="false" animated="true">-->
-    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers()" showCancelButton="false" animated="true">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="filterUsers($event)" showCancelButton="false" animated="true">
     </ion-searchbar>
 
     <ion-list>

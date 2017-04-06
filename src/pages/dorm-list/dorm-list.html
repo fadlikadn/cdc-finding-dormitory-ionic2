@@ -25,11 +25,12 @@
 
 
 <ion-content padding>
-    <ion-searchbar [(ngModel)]="searchTerm" showCancelButton="false" animated="true">
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="getItems($event)" showCancelButton="false" animated="true">
     </ion-searchbar>
 
     <ion-list>
         <ion-item-sliding *ngFor="let dorm of dorms | async">
+            <!--<ion-item-sliding *ngFor="let dorm of dorms">-->
             <ion-item>
                 <h2>{{ dorm.name }}</h2>
                 <h3>{{ dorm.$key }}</h3>

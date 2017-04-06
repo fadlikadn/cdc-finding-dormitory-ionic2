@@ -13,8 +13,6 @@ import { AroundMapPage } from '../around-map/around-map';
 //         from '@ionic-native/google-maps';
 import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
-
-
 /*
   Generated class for the TabAround page.
 

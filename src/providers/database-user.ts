@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
 import { Observable } from 'rxjs/Observable';
 import * as firebase from 'firebase';
 
@@ -14,9 +15,13 @@ import * as firebase from 'firebase';
 export class DatabaseUser {
 
   public currentUser: any;
+  public users: FirebaseListObservable<any[]>;
 
-  constructor(public http: Http) {
+  constructor(
+    public http: Http,
+    public angFire: AngularFire) {
     console.log('Hello DatabaseUser Provider');
+    this.users = angFire.database.list('users');
   }
 
   render(): Observable<any> {
@@ -41,6 +46,11 @@ export class DatabaseUser {
       console.log('Observable for retrieving user fails');
       console.dir(error);
     }
+  }
+
+  render2(): FirebaseListObservable<any> {
+    this.users = this.angFire.database.list('users');
+    return this.users;
   }
 
   delete(id): Promise<any> {

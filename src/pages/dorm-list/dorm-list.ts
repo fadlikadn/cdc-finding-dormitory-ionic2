@@ -8,6 +8,7 @@ import * as firebase from 'firebase';
 import { Http } from '@angular/http';
 import { FormControl } from '@angular/forms';
 import 'rxjs/Rx';
+import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 
 import { LoginPage } from '../login/login';
@@ -29,6 +30,9 @@ export class DormListPage {
   public searchTerm: string = '';
   public searchControl: FormControl;
   public authService: AuthService;
+  // public dormRef: any;
+  // public dormList: any;
+  public loadedDormList: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -46,6 +50,30 @@ export class DormListPage {
     });
     this.searchControl = new FormControl();
     this.authService = authServiceParams;
+    // this.dormList = this._DB.render2();
+    this.loadedDormList = this._DB.render2();
+  }
+
+  initializeItems(): void {
+    this.dorms = this.loadedDormList;
+  }
+
+  getItems(searchbar) {
+    // Reset items back to all of the items
+    this.initializeItems();
+
+    // set q to the value of the searchbar
+    var q = searchbar.srcElement.value;
+    console.log(q);
+
+    // if the value is an empty string don't filter the items
+    if (!q) {
+      return;
+    }
+
+    // console.log(this.dorms);
+    // this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => dorm.name == q));
+    this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => dorm.name.toLowerCase().indexOf(q.toLowerCase()) >= 0));
   }
 
   ionViewDidEnter() {
@@ -97,7 +125,7 @@ export class DormListPage {
 
   deleteDorm(dorm) {
     this._LOADER.displayPreloader();
-    this._DB.delete2(dorm.id).then((data) => {
+    this._DB.delete2(dorm.$key).then((data) => {
         this.loadAndParseDorms();
     });
   }

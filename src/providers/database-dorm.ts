@@ -16,7 +16,7 @@ import * as firebase from 'firebase';
 export class DatabaseDorm {
 
   public dorms2: FirebaseListObservable<any[]>;
-
+  public dormRef: any;
 
   constructor(
       public http: Http,
