@@ -60,7 +60,14 @@ export class LoginPage {
     } else {
       this.authService.doLogin(this.loginForm.value.email, this.loginForm.value.password).then(authService => {
         // this.navCtrl.setRoot(Page1);
-        this.navCtrl.setRoot(HomePage);
+        this.loading = this.loadingCtrl.create({
+          dismissOnPageChange: true,
+        });
+        this.loading.present().then(() => {
+          this.loading.dismiss().then(() => {
+            this.navCtrl.setRoot(HomePage);
+          });
+        });
       }, error => {
         this.loading.dismiss().then(() => {
           let alert = this.alertCtrl.create({
@@ -75,11 +82,6 @@ export class LoginPage {
           alert.present();
         });
       });
-
-      this.loading = this.loadingCtrl.create({
-        dismissOnPageChange: true,
-      });
-      this.loading.present();
     }
   }
 

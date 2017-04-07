@@ -21,6 +21,7 @@ import { AroundListPage } from '../pages/around-list/around-list';
 import { AroundMapPage } from '../pages/around-map/around-map';
 
 import { MapSamplePage } from '../pages/map-sample/map-sample';
+import { MapJsPage } from '../pages/map-js/map-js';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -32,6 +33,7 @@ import { AuthService } from '../providers/auth-service';
 import { DatabaseUser } from '../providers/database-user';
 import { DatabaseDorm } from '../providers/database-dorm';
 import { Preloader } from '../providers/preloader';
+import { Image } from '../providers/image';
 
 import { ConnectivityService } from '../providers/connectivity-service';
 
@@ -68,9 +70,12 @@ firebase.initializeApp(firebaseConfig);
     AroundListPage,
     AroundMapPage,
     MapSamplePage,
+    MapJsPage,
   ],
   imports: [
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp, {
+      menuType: 'push',
+    }, {}),
     AngularFireModule.initializeApp(firebaseConfig, myFirebaseAuthConfig)
   ],
   bootstrap: [IonicApp],
@@ -90,7 +95,8 @@ firebase.initializeApp(firebaseConfig);
     TabAreaPage,
     AroundListPage,
     AroundMapPage,
-    MapSamplePage
+    MapSamplePage,
+    MapJsPage,
   ],
   providers: [
     StatusBar,
@@ -100,7 +106,8 @@ firebase.initializeApp(firebaseConfig);
     DatabaseUser,
     DatabaseDorm,
     Preloader,
-    ConnectivityService
+    ConnectivityService,
+    Image,
   ]
 })
 export class AppModule {}

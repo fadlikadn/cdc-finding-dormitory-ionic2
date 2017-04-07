@@ -1,3 +1,10 @@
 page-home {
-
+    // .tabs .tab-button {
+    //     color: rgba(60, 60, 60, 0.7);
+    // }
+    // .tabs .tab-button [aria-selected=true] {
+    //     color: #fcd736;
+    // }
+    $tabs-md-tab-text-color: rgba(60, 60, 60, 0.7);
+    $tabs-md-tab-text-color-active: #fcd736;
 }

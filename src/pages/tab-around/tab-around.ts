@@ -11,7 +11,7 @@ import { AroundMapPage } from '../around-map/around-map';
 //         MarkerOptions,
 //         Marker } 
 //         from '@ionic-native/google-maps';
-import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
+// import { Geolocation, GoogleMap, GoogleMapsAnimation, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
 /*
   Generated class for the TabAround page.
@@ -19,6 +19,9 @@ import { GoogleMap, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
   See http://ionicframework.com/docs/v2/components/#navigation for more info on
   Ionic pages and navigation.
 */
+
+declare var google;
+
 @Component({
   selector: 'page-tab-around',
   templateUrl: 'tab-around.html'
@@ -31,9 +34,12 @@ export class TabAroundPage {
   public dorm: string = '';
   public coords: any;
   public isActive: boolean = false;
-  private mapcanvas: GoogleMap;
+  // private mapcanvas: GoogleMap;
   private location: any;
   public around = 'list';
+
+  // @ViewChild('map') mapElement: ElementRef;
+  // map: any;
 
   // @ViewChild('map') mapElement: ElementRef;
 
@@ -48,9 +54,9 @@ export class TabAroundPage {
     // public googleMaps: GoogleMaps
     // public connectivityService: ConnectivityService,
     ) {
-      this.platform.ready().then(() => {
-          // this.loadMap();
-      });
+    //   this.platform.ready().then(() => {
+        //   this.loadMap();
+    //   });
       // this.loadGoogleMaps();
   }
 
@@ -60,92 +66,71 @@ export class TabAroundPage {
 
   ionViewDidLoad() {
       console.log('ionViewDidLoad TabAroundPage');
+      // this.loadMapJs();
   }
 
-  // loadMap2() {
-  //     let element: HTMLElement = document.getElementById('map');
+  loadMapJs() {
+    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
 
-  //     let map: GoogleMap = this.googleMaps.create(element);
-  //     // this.map = new GoogleMap('map');
-  //     map = new GoogleMap('map');
+    let mapOptions = {
+      center: latLng,
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
 
-  //     // this.map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-  //     map.one(GoogleMapsEvent.MAP_READY).then(() => console.log('Map is ready!'));
-
-  //     this.coords = {
-  //         lat: -7.800683,
-  //         lng: 110.396568
-  //     };
-
-  //     let ionic: LatLng = new LatLng(this.coords.lat, this.coords.lng);
-
-  //     let position: CameraPosition = {
-  //         target: ionic,
-  //         zoom: 18,
-  //         tilt: 30
-  //     };
-
-  //     // this.map.moveCamera(position);
-  //     map.moveCamera(position);
-
-  //     let markerOptions: MarkerOptions = {
-  //         position: ionic,
-  //         title: 'Mitrais Office'
-  //     };
-
-  //     // const marker: Marker = 
-  //     map.addMarker(markerOptions)
-  //         .then((marker: Marker) => {
-  //             marker.showInfoWindow();
-  //         });
-  // }
-
-  loadMap() {
-      GoogleMap.isAvailable().then((isAvailable: boolean) => {
-          if(!isAvailable) {
-              this.dorm = 'GoogleMap plugin is NOT available';
-              console.log('GoogleMap plugin is NOT available');
-          } else {
-              this.dorm = 'GoogleMap plugin is available';
-              console.log('GoogleMap plugin is available');
-
-              this.coords = {
-                  lat: -7.800683,
-                  lng: 110.396568
-              };
-              this.isActive = true;
-              this.location = new GoogleMapsLatLng(this.coords.lat, this.coords.lng);
-
-              this.mapcanvas = new GoogleMap('mapcanvas', {
-                  'backgroundColor': 'white',
-                  'controls': {
-                      'compass': true,
-                      'myLocationButton': true,
-                      'indoorPicker': true,
-                      'zoom': true
-                  },
-                  'gestures': {
-                      'scroll': true,
-                      'tilt': true,
-                      'rotate': true,
-                      'zoom': true
-                  },
-                  'camera': {
-                      'latLng': location,
-                      'tilt': 30,
-                      'zoom': 15,
-                      'bearing': 50
-                  }
-              });
-              console.log(this.mapcanvas);
-
-              this.mapcanvas.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
-                  console.log('Map is ready');
-                  // this.listLocation();
-              });
-          }
-      });
+    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
+    console.log(this.map);
   }
+
+//   loadMap() {
+//       GoogleMap.isAvailable().then((isAvailable: boolean) => {
+//           if(!isAvailable) {
+//               this.dorm = 'GoogleMap plugin is NOT available';
+//               console.log('GoogleMap plugin is NOT available');
+//           } else {
+//               this.dorm = 'GoogleMap plugin is available';
+//               console.log('GoogleMap plugin is available');
+
+//           }
+
+//             this.coords = {
+//                 lat: -7.800683,
+//                 lng: 110.396568
+//             };
+//             this.isActive = true;
+//             this.location = new GoogleMapsLatLng(this.coords.lat, this.coords.lng);
+
+//             this.mapcanvas = new GoogleMap('mapcanvas', {
+//                 'backgroundColor': 'white',
+//                 'controls': {
+//                     'compass': true,
+//                     'myLocationButton': true,
+//                     'indoorPicker': true,
+//                     'zoom': true
+//                 },
+//                 'gestures': {
+//                     'scroll': true,
+//                     'tilt': true,
+//                     'rotate': true,
+//                     'zoom': true
+//                 },
+//                 'camera': {
+//                     'latLng': location,
+//                     'tilt': 30,
+//                     'zoom': 15,
+//                     'bearing': 50
+//                 }
+//             });
+//             console.log(this.mapcanvas);
+
+//             this.mapcanvas.on(GoogleMapsEvent.MAP_READY).subscribe(() => {
+//                 console.log('Map is ready');
+//                 // this.listLocation();
+//             });
+//       }).catch((error) => {
+//           console.log(error);
+//       });
+//   }
 
   // listLocation() {
   //     let title = `Your current location\n\nLatitude: ${this.coords.lat}\nLongitude: ${this.coords.lng}`;

@@ -10,6 +10,7 @@ import { LoginPage } from '../pages/login/login';
 import { UserListPage } from '../pages/user-list/user-list';
 import { DormListPage } from '../pages/dorm-list/dorm-list';
 import { MapSamplePage } from '../pages/map-sample/map-sample';
+import { MapJsPage } from '../pages/map-js/map-js';
 
 @Component({
   templateUrl: 'app.html'
@@ -33,6 +34,7 @@ export class MyApp {
       { title: 'Manage User', component: UserListPage },
       { title: 'Manage Dorm', component: DormListPage },
       { title: 'Map Sample', component: MapSamplePage },
+      { title: 'Map JS', component: MapJsPage },
     ];
 
   }

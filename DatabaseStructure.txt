@@ -18,3 +18,7 @@ Users: {
 }
 // To edit user access
 
+Dorms: {
+    
+}
+

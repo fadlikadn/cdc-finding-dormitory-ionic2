@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NavController, ViewController, NavParams } from 'ionic-angular';
 import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { Image } from '../../providers/image';
 import { Preloader } from '../../providers/preloader';
 import { DatabaseDorm } from '../../providers/database-dorm';
 import * as firebase from 'firebase';
@@ -19,6 +20,8 @@ import * as firebase from 'firebase';
 export class ModalsDormPage {
 
   public dormForm: any;
+  public dormImage: any;
+  public dormImageExist: any;
   // public dorms: FirebaseListObservable<any[]>;
   public dorms: any;
   public dormName: any = '';
@@ -42,6 +45,7 @@ export class ModalsDormPage {
     public _FB: FormBuilder,
     public _FIRE: AngularFire,
     public viewCtrl: ViewController,
+    public _IMG: Image,
     public _LOADER: Preloader,
     public _DB: DatabaseDorm) {
       this.dormForm = _FB.group({
@@ -76,6 +80,9 @@ export class ModalsDormPage {
         this.dormParking = dorm.parking;
         this.dormPublicFacility = dorm.publicFacility;
         this.dormId = dorm.$key;
+        this.dormImage = dorm.image;
+        this.dormImageExist = dorm.image;
+
         console.log(dorm);
         console.log(this.dormId);
 
@@ -114,6 +121,7 @@ export class ModalsDormPage {
 
     let name: string = this.dormForm.controls["name"].value;
     let gender: string = this.dormForm.controls["gender"].value;
+    let image: string = this.dormImage;
     let location: string = this.dormForm.controls["location"].value;
     let price: string = this.dormForm.controls["price"].value;
     let notes: string = this.dormForm.controls["notes"].value;
@@ -162,6 +170,10 @@ export class ModalsDormPage {
 
     if (this.isEditable) {
       // Edit
+      // if (image !== this.dormImageExist) {
+      //   this._DB.up
+      // }
+
       this._DB.update(this.dormId, {
         name: name,
         gender: gender,
@@ -201,6 +213,12 @@ export class ModalsDormPage {
 
   closeModal(val = null) {
     this.viewCtrl.dismiss(val);
+  }
+
+  selectImage() {
+    this._IMG.selectImage().then((data) => {
+      this.dormImage = data;
+    });
   }
 
   ionViewDidLoad() {

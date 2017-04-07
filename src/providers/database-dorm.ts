@@ -86,4 +86,34 @@ export class DatabaseDorm {
     });
   }
 
+  uploadImage(imageString): Promise<any> {
+    let image: string = 'dorm-' + new Date().getTime() + '.jpg';
+    let storageRef: any;
+    let parseUpload: any;
+
+    return new Promise((resolve, reject) => {
+      storageRef = firebase.storage().ref('dorms/' + image);
+      parseUpload = storageRef.putString(imageString, 'data_url');
+
+      parseUpload.on('state_changed', (_snapshot) => {
+        console.log('snapshot progress ' + _snapshot);
+      },
+      (_err) => {
+        reject(_err);
+      },
+      (success) => {
+        resolve(parseUpload.snapshot);
+      });
+    });
+  }
+
+  deleteImage(dorm): Promise<any> {
+    let storageRef: any;
+    let parseDelete: any;
+
+    return new Promise((resolve, reject) => {
+
+    });
+  }
+
 }
