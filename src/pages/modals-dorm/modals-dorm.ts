@@ -121,7 +121,7 @@ export class ModalsDormPage {
 
     let name: string = this.dormForm.controls["name"].value;
     let gender: string = this.dormForm.controls["gender"].value;
-    let image: string = this.dormImage;
+    // let image: string = this.dormImage;
     let location: string = this.dormForm.controls["location"].value;
     let price: string = this.dormForm.controls["price"].value;
     let notes: string = this.dormForm.controls["notes"].value;

@@ -20,87 +20,81 @@
 </ion-tabs>-->
 
 <ion-content>
-    <!--Around-->
-    <ion-segment [(ngModel)]="around" color="primary">
-        <ion-segment-button value="list">
-            List
-        </ion-segment-button>
-        <ion-segment-button value="maptab">
-            Map
-        </ion-segment-button>
-    </ion-segment>
 
-    <div class="content-wrapper" [ngSwitch]="around">
-        <div *ngSwitchCase="'list'">
-            <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
-            <!--<ion-scroll scrollY="true" class="dorm-list">-->
-            <ion-list *ngFor="let dorm of dorms | async">
-                <ion-item>
-                    <h2>{{ dorm.name }}</h2>
-                    <h3>{{ dorm.location }}</h3>
-                    <p>Rp {{ dorm.price }} </p>
-                    <p>Features : {{ dorm.roomFacility }}</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 1</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 2</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 3</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 4</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 5</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 6</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 7</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 8</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 9</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-                <ion-item>
-                    <h2>Dorm 10</h2>
-                    <h3>Located on Kalasan Sleman</h3>
-                    <p>Feature : Bedroom, table, chair, AC</p>
-                </ion-item>
-            </ion-list>
-            <!--</ion-scroll>-->
-        </div>
-        <div *ngSwitchCase="'maptab'">
-            <!--<div id="mapcanvas">
-                <ion-searchbar [(ngModel)]="dorm"></ion-searchbar>
-            </div>-->
-            <!--Map Content-->
-            <div #mapcanvas id="mapcanvas"></div>
-            <!--<div #map id="map"></div>-->
-        </div>
-    </div>
+    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="getItems($event)" showCancelButton="false" animated="true"></ion-searchbar>
+
+    <ion-list *ngFor="let dorm of dorms | async">
+        <ion-item class="grid">
+            <figure class="effect-steve">
+                <img src="./assets/img/home.jpg" />
+                <figcaption>
+                    <h2>
+                        {{ dorm.name }} <span> {{ dorm.location }}</span>
+                    </h2>
+                    <p>Price : Rp {{ dorm.price }} , full furnished</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </ion-item>
+
+        <!--<ion-item class="grid">
+            <figure class="effect-steve">
+                <img src="./assets/img/home.jpg" />
+                <figcaption>
+                    <h2>
+                        Kalasan <span>Yogyakarta</span>
+                    </h2>
+                    <p>Price : Rp 500.000, full furnished</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </ion-item>
+
+        <ion-item class="grid">
+            <figure class="effect-steve">
+                <img src="./assets/img/home2.jpg" />
+                <figcaption>
+                    <h2>
+                        Pogung <span>Sleman</span>
+                    </h2>
+                    <p>Price : Rp 600.000, full furnished</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </ion-item>
+
+        <ion-item class="grid">
+            <figure class="effect-steve">
+                <img src="./assets/img/home3.jpg" />
+                <figcaption>
+                    <h2>
+                        Kotagede <span>Yogyakarta</span>
+                    </h2>
+                    <p>Price : Rp 400.000, full furnished</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </ion-item>
+
+        <ion-item class="grid">
+            <figure class="effect-steve">
+                <img src="./assets/img/home4.jpg" />
+                <figcaption>
+                    <h2>
+                        Godean <span>Sleman</span>
+                    </h2>
+                    <p>Price : Rp 350.000, full furnished</p>
+                    <a href="#">View more</a>
+                </figcaption>
+            </figure>
+        </ion-item>-->
+    </ion-list>
+
+    <ion-fab right bottom>
+        <button small ion-fab color="dark" id="filter" mini><ion-icon name="settings"></ion-icon></button>
+        <!--<ion-fab-list side="top">
+            <button small ion-fab><ion-icon name="md-share"></ion-icon></button>
+            <button small ion-fab><span>filter</span></button>
+        </ion-fab-list>-->
+    </ion-fab>
 </ion-content>
