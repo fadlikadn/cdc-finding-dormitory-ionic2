@@ -21,7 +21,8 @@ import { AroundListPage } from '../pages/around-list/around-list';
 import { AroundMapPage } from '../pages/around-map/around-map';
 
 import { MapSamplePage } from '../pages/map-sample/map-sample';
-import { MapJsPage } from '../pages/map-js/map-js';
+// import { DormMapPage } from '../pages/dorm-map/dorm-map';
+// import { MapJsPage } from '../pages/map-js/map-js';
 
 import { AngularFireModule, AuthProviders, AuthMethods } from 'angularfire2';
 import * as firebase from 'firebase';
@@ -70,7 +71,8 @@ firebase.initializeApp(firebaseConfig);
     AroundListPage,
     AroundMapPage,
     MapSamplePage,
-    MapJsPage,
+    // DormMapPage,
+    // MapJsPage,
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -96,7 +98,8 @@ firebase.initializeApp(firebaseConfig);
     AroundListPage,
     AroundMapPage,
     MapSamplePage,
-    MapJsPage,
+    // DormMapPage,
+    // MapJsPage,
   ],
   providers: [
     StatusBar,

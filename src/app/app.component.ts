@@ -9,8 +9,9 @@ import { Page2 } from '../pages/page2/page2';
 import { LoginPage } from '../pages/login/login';
 import { UserListPage } from '../pages/user-list/user-list';
 import { DormListPage } from '../pages/dorm-list/dorm-list';
-import { MapSamplePage } from '../pages/map-sample/map-sample';
-import { MapJsPage } from '../pages/map-js/map-js';
+// import { DormMapPage } from '../pages/dorm-map/dorm-map';
+// import { MapSamplePage } from '../pages/map-sample/map-sample';
+// import { MapJsPage } from '../pages/map-js/map-js';
 
 @Component({
   templateUrl: 'app.html'
@@ -29,12 +30,13 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home Page', component: HomePage },
+      // { title: 'Dorm Map', component: DormMapPage },
+      // { title: 'Dorm Map', component: DormMapPage },
       // { title: 'Page One', component: Page1 },
       // { title: 'Page Two', component: Page2 },
       { title: 'Manage User', component: UserListPage },
       { title: 'Manage Dorm', component: DormListPage },
-      { title: 'Map Sample', component: MapSamplePage },
-      { title: 'Map JS', component: MapJsPage },
+      // { title: 'Map Sample', component: MapSamplePage },
     ];
 
   }
@@ -60,7 +62,5 @@ export class MyApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.setRoot(page.component);
-
-    
   }
 }

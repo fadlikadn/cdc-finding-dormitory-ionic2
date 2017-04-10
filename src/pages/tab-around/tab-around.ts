@@ -2,16 +2,6 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 import { NavController, NavParams, Platform } from 'ionic-angular';
 import { AroundListPage } from '../around-list/around-list';
 import { AroundMapPage } from '../around-map/around-map';
-// import { GoogleMaps,
-//         GoogleMap,
-//         GoogleMapsAnimation,
-//         GoogleMapsEvent,
-//         LatLng,
-//         CameraPosition,
-//         MarkerOptions,
-//         Marker } 
-//         from '@ionic-native/google-maps';
-// import { Geolocation, GoogleMap, GoogleMapsAnimation, GoogleMapsEvent, GoogleMapsLatLng } from 'ionic-native';
 
 /*
   Generated class for the TabAround page.
@@ -38,27 +28,11 @@ export class TabAroundPage {
   private location: any;
   public around = 'list';
 
-  // @ViewChild('map') mapElement: ElementRef;
-  // map: any;
-
-  // @ViewChild('map') mapElement: ElementRef;
-
-  // map: any;
-  // mapInitialised: boolean = false;
-  // apiKey: any = 'AIzaSyCXafrE-rusPMcc7Gz5U2ktiqcPohtT-Hk';
-
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
     public platform: Platform,
-    // public googleMaps: GoogleMaps
-    // public connectivityService: ConnectivityService,
-    ) {
-    //   this.platform.ready().then(() => {
-        //   this.loadMap();
-    //   });
-      // this.loadGoogleMaps();
-  }
+    ) {}
 
   // ngAfterViewInit() {
   //     this.loadMap2();
@@ -66,20 +40,6 @@ export class TabAroundPage {
 
   ionViewDidLoad() {
       console.log('ionViewDidLoad TabAroundPage');
-      // this.loadMapJs();
-  }
-
-  loadMapJs() {
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
-
-    let mapOptions = {
-      center: latLng,
-      zoom: 15,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-
-    this.map = new google.maps.Map(this.mapElement.nativeElement, mapOptions);
-    console.log(this.map);
   }
 
 //   loadMap() {

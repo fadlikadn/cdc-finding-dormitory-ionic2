@@ -7,12 +7,13 @@
 <ion-header>
 
     <ion-navbar>
-        <ion-title>TabArea</ion-title>
+        <ion-title>Map Area</ion-title>
     </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-    Area
+    <ion-searchbar [(ngModel)]="dorm" id="searchbar"></ion-searchbar>
+    <div #map id="map"></div>
 </ion-content>

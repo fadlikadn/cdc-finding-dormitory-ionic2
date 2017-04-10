@@ -11,10 +11,10 @@ import { NavController, NavParams } from 'ionic-angular';
 declare var google;
 
 @Component({
-  selector: 'page-map-js',
-  templateUrl: 'map-js.html'
+  selector: 'page-dorm-map',
+  templateUrl: 'dorm-map.html'
 })
-export class MapJsPage {
+export class DormMapPage {
 
   @ViewChild('map') mapElement: ElementRef;
   map: any;
@@ -27,7 +27,8 @@ export class MapJsPage {
   }
 
   loadMap() {
-    let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    // let latLng = new google.maps.LatLng(-34.9290, 138.6010);
+    let latLng = new google.maps.LatLng(-7.800683, 110.396568);
 
     let mapOptions = {
       center: latLng,

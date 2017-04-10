@@ -1,3 +1,23 @@
-page-tab-area {
-
+.ios,
+.md {
+    page-tab-area {
+        .scroll {
+            height: 100%;
+        }
+        #map {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            /* Set z-index to 0 as it will be on layer below the contact form */
+        }
+        #searchbar {
+            position: relative;
+            z-index: 1;
+            height: auto;
+            opacity: 0.9;
+        }
+    }
 }
