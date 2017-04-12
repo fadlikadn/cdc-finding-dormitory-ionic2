@@ -1,0 +1,23 @@
+page-dorm-detail {
+    .figure {
+        position: relative;
+        float: left;
+        overflow: hidden;
+        margin: 10px 1%;
+        padding-left: 0;
+        min-width: 320px;
+        max-width: 480px;
+        max-height: 300px;
+        height: auto;
+        background: #3085a3;
+        text-align: center;
+        cursor: pointer;
+    }
+    .figure img {
+        position: relative;
+        display: block;
+        min-height: 100%;
+        max-width: 100%;
+        opacity: 0.8;
+    }
+}

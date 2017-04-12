@@ -10,6 +10,7 @@ import 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import { LoginPage } from '../login/login';
+import { DormDetailPage } from '../dorm-detail/dorm-detail';
 
 
 // import { AroundListPage } from '../around-list/around-list';
@@ -96,6 +97,19 @@ export class TabAroundPage {
 
   filterDorms() {
     console.log(this.dorms);
+  }
+
+  gotoDormDetail(dormData: any) {
+    let params = { dorm: dormData };
+    let modal = this.modalCtrl.create(DormDetailPage, params);
+
+    modal.onDidDismiss((data) => {
+      if (data) {
+        this._LOADER.displayPreloader();
+        this.loadAndParseDorms();
+      }
+    });
+    modal.present();
   }
 
   // listLocation() {

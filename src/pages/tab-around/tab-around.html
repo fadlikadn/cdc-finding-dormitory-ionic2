@@ -32,7 +32,8 @@
                         {{ dorm.name }} <span> {{ dorm.location }}</span>
                     </h2>
                     <p>Price : Rp {{ dorm.price }} , full furnished</p>
-                    <a href="#">View more</a>
+                    <!--<a href="#">View more</a>-->
+                    <a (click)="gotoDormDetail(dorm)">View more</a>
                 </figcaption>
             </figure>
         </ion-item>

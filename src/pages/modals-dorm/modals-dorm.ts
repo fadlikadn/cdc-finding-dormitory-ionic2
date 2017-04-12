@@ -86,25 +86,27 @@ export class ModalsDormPage {
         console.log(dorm);
         console.log(this.dormId);
 
+        console.log(this.dormRoomFacility);
         for (k in dorm.roomFacility) {
           this.dormRoomFacility.push(dorm.roomFacility[k].name);
         }
+        console.log(this.dormRoomFacility);
 
-        for (k in dorm.bathroom) {
-          this.dormBathroom.push(dorm.bathroom[k].name);
-        }
+        // for (k in dorm.bathroom) {
+        //   this.dormBathroom.push(dorm.bathroom[k].name);
+        // }
 
-        for (k in dorm.generalFacility) {
-          this.dormGeneralFacility.push(dorm.generalFacility[k].name);
-        }
+        // for (k in dorm.generalFacility) {
+        //   this.dormGeneralFacility.push(dorm.generalFacility[k].name);
+        // }
 
-        for (k in dorm.parking) {
-          this.dormParking.push(dorm.parking[k].name);
-        }
+        // for (k in dorm.parking) {
+        //   this.dormParking.push(dorm.parking[k].name);
+        // }
 
-        for (k in dorm.publicFacility) {
-          this.dormPublicFacility.push(dorm.publicFacility[k].name);
-        }
+        // for (k in dorm.publicFacility) {
+        //   this.dormPublicFacility.push(dorm.publicFacility[k].name);
+        // }
 
         this.isEditable = true;
         this.title = dorm.name;
@@ -139,10 +141,12 @@ export class ModalsDormPage {
     let k: any;
 
     for (k in roomFacility) {
+      console.log(roomFacility[k]);
       roomFacilityJson.push({
         "name": roomFacility[k]
       });
     }
+    console.log(roomFacilityJson);
 
     for (k in bathroom) {
       bathroomJson.push({

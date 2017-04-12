@@ -14,6 +14,8 @@ import { ModalsUserPage } from '../pages/modals-user/modals-user';
 import { DormListPage } from '../pages/dorm-list/dorm-list';
 import { ModalsDormPage } from '../pages/modals-dorm/modals-dorm';
 
+import { DormDetailPage } from '../pages/dorm-detail/dorm-detail';
+
 import { TabAroundPage } from '../pages/tab-around/tab-around';
 import { TabAreaPage } from '../pages/tab-area/tab-area';
 
@@ -71,6 +73,7 @@ firebase.initializeApp(firebaseConfig);
     AroundListPage,
     AroundMapPage,
     MapSamplePage,
+    DormDetailPage,
     // DormMapPage,
     // MapJsPage,
   ],
@@ -98,6 +101,7 @@ firebase.initializeApp(firebaseConfig);
     AroundListPage,
     AroundMapPage,
     MapSamplePage,
+    DormDetailPage,
     // DormMapPage,
     // MapJsPage,
   ],

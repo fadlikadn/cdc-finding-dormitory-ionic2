@@ -3,6 +3,7 @@ import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
+import * as firebase from 'firebase';
 import { HomePage } from '../pages/home/home';
 import { Page1 } from '../pages/page1/page1';
 import { Page2 } from '../pages/page2/page2';
@@ -21,10 +22,24 @@ export class MyApp {
 
   // rootPage: any = Page1;
   rootPage: any = HomePage;
+  // public rootPage: any;
 
   pages: Array<{title: string, component: any}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+    
+    // firebase.auth().onAuthStateChanged(function (user) {
+    //   console.log('load firebase checking');
+    //   if (user) {
+    //     this.rootPage = HomePage;
+    //     console.log('homepage');
+    //   } else {
+    //     this.rootPage = LoginPage;
+    //     console.log('loginpage');
+    //   }
+    // });
+    // console.log(this.rootPage);
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -38,6 +53,8 @@ export class MyApp {
       { title: 'Manage Dorm', component: DormListPage },
       // { title: 'Map Sample', component: MapSamplePage },
     ];
+
+    
 
   }
 
