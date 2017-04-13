@@ -22,6 +22,8 @@ import { TabAreaPage } from '../pages/tab-area/tab-area';
 import { AroundListPage } from '../pages/around-list/around-list';
 import { AroundMapPage } from '../pages/around-map/around-map';
 
+import { DormFilterPage } from '../pages/dorm-filter/dorm-filter';
+
 import { MapSamplePage } from '../pages/map-sample/map-sample';
 // import { DormMapPage } from '../pages/dorm-map/dorm-map';
 // import { MapJsPage } from '../pages/map-js/map-js';
@@ -74,6 +76,7 @@ firebase.initializeApp(firebaseConfig);
     AroundMapPage,
     MapSamplePage,
     DormDetailPage,
+    DormFilterPage,
     // DormMapPage,
     // MapJsPage,
   ],
@@ -102,6 +105,7 @@ firebase.initializeApp(firebaseConfig);
     AroundMapPage,
     MapSamplePage,
     DormDetailPage,
+    DormFilterPage,
     // DormMapPage,
     // MapJsPage,
   ],

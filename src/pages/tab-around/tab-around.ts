@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import { LoginPage } from '../login/login';
 import { DormDetailPage } from '../dorm-detail/dorm-detail';
-
+import { DormFilterPage } from '../dorm-filter/dorm-filter';
 
 // import { AroundListPage } from '../around-list/around-list';
 // import { AroundMapPage } from '../around-map/around-map';
@@ -107,6 +107,20 @@ export class TabAroundPage {
       if (data) {
         this._LOADER.displayPreloader();
         this.loadAndParseDorms();
+      }
+    });
+    modal.present();
+  }
+
+  showFilter() {
+    let modal = this.modalCtrl.create(DormFilterPage);
+
+    modal.onDidDismiss((data) => {
+      if (data) {
+        console.log(data);
+        this._LOADER.displayPreloader();
+        // query dorm by selected filter
+        this._LOADER.hidePreloader();
       }
     });
     modal.present();

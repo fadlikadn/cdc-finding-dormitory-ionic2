@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-    <ion-navbar>
+    <ion-navbar color="yellowbar">
         <ion-title>{{ title }}</ion-title>
         <ion-buttons start>
             <button ion-button color="primary" (click)="closeModal()">
@@ -60,6 +60,16 @@
         </ion-item>
 
         <ion-item>
+            <ion-label stacked>Period</ion-label>
+            <ion-select formControlName="period" [(ngModel)]="dormPeriod">
+                <ion-option value="Daily">Daily</ion-option>
+                <ion-option value="Weekly">Weekly</ion-option>
+                <ion-option value="Monthly">Monthly</ion-option>
+                <ion-option value="Annual">Annual</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
             <ion-label stacked>Price</ion-label>
             <ion-input type="text" formControlName="price" [(ngModel)]="dormPrice" placeholder="Price"></ion-input>
         </ion-item>
@@ -81,7 +91,7 @@
                 <ion-option value="Cabinet">Cabinet</ion-option>
                 <ion-option value="TV">TV</ion-option>
                 <ion-option value="AC">AC</ion-option>
-                <ion-option value="table">Table</ion-option>
+                <ion-option value="Table">Table</ion-option>
                 <ion-option value="Wifi">Wifi</ion-option>
                 <ion-option value="Chair">Chair</ion-option>
             </ion-select>

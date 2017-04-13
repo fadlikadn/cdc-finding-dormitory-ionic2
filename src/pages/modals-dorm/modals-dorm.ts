@@ -27,6 +27,7 @@ export class ModalsDormPage {
   public dormName: any = '';
   public dormGender: any = '';
   public dormLocation: any = '';
+  public dormPeriod: any = '';
   public dormPrice: any = '';
   public dormNotes: any = '';
   public dormDescription: any = '';
@@ -52,6 +53,7 @@ export class ModalsDormPage {
         'name': ['', Validators.compose([Validators.minLength(4), Validators.required]) ],
         'gender': ['', Validators.compose([Validators.required])],
         'location': ['', Validators.compose([Validators.required])],
+        'period': [''],
         'price': ['', Validators.compose([Validators.required])],
         'notes': [''],
         'description': [''],
@@ -71,6 +73,7 @@ export class ModalsDormPage {
         this.dormName = dorm.name;
         this.dormGender = dorm.gender;
         this.dormLocation = dorm.location;
+        this.dormPeriod = dorm.period;
         this.dormPrice = dorm.price;
         this.dormNotes = dorm.notes;
         this.dormDescription = dorm.description;
@@ -125,6 +128,7 @@ export class ModalsDormPage {
     let gender: string = this.dormForm.controls["gender"].value;
     // let image: string = this.dormImage;
     let location: string = this.dormForm.controls["location"].value;
+    let period: string = this.dormForm.controls["period"].value;
     let price: string = this.dormForm.controls["price"].value;
     let notes: string = this.dormForm.controls["notes"].value;
     let description: string = this.dormForm.controls["description"].value;
@@ -182,6 +186,7 @@ export class ModalsDormPage {
         name: name,
         gender: gender,
         location: location,
+        period: period,
         price: price,
         notes: notes,
         description: description,
@@ -199,6 +204,7 @@ export class ModalsDormPage {
         name: name,
         gender: gender,
         location: location,
+        period: period,
         price: price,
         notes: notes,
         description: description,
