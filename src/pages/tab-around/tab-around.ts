@@ -40,6 +40,7 @@ export class TabAroundPage {
   public coords: any;
   public isActive: boolean = false;
   public around = 'list';
+  public filterParams: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -95,10 +96,6 @@ export class TabAroundPage {
       console.log('ionViewDidLoad TabAroundPage');
   }
 
-  filterDorms() {
-    console.log(this.dorms);
-  }
-
   gotoDormDetail(dormData: any) {
     let params = { dorm: dormData };
     let modal = this.modalCtrl.create(DormDetailPage, params);
@@ -113,13 +110,27 @@ export class TabAroundPage {
   }
 
   showFilter() {
-    let modal = this.modalCtrl.create(DormFilterPage);
+    let params = { params: this.filterParams };
+    let modal = this.modalCtrl.create(DormFilterPage, params);
 
     modal.onDidDismiss((data) => {
       if (data) {
+        this.filterParams = data;
         console.log(data);
         this._LOADER.displayPreloader();
         // query dorm by selected filter
+        if (data.gender !== undefined) {
+            this.dorms = this._DBDorm.render2();
+            if (data.gender !== '') {
+                console.log('search by gender');
+                this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => dorm.gender == data.gender));
+                console.log(this.dorms);
+            }
+        } else  {
+            this.dorms = this._DBDorm.render2();
+            console.log(this.dorms);
+        }
+
         this._LOADER.hidePreloader();
       }
     });

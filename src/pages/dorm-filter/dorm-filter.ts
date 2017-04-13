@@ -17,6 +17,11 @@ import * as firebase from 'firebase';
 export class DormFilterPage {
 
   public dormFilter: any;
+  public dormGender: any = '';
+  public dormPeriod: any = '';
+  public dormMinPrice: any = '';
+  public dormMaxPrice: any = '';
+  public dormRoomFacility: any = [];
 
   constructor(
     public navCtrl: NavController, 
@@ -31,6 +36,22 @@ export class DormFilterPage {
         'maxPrice': [''],
         'roomFacility': [''],
       });
+
+      let params = navParams.get('params');
+      console.log(params);
+      if (params !== undefined) {
+        let k;
+        this.dormGender = params.gender;
+        this.dormPeriod = params.period;
+        this.dormMinPrice = params.minPrice;
+        this.dormMaxPrice = params.maxPrice;
+        // this.dormRoomFacility = '';
+
+        for (k in params.roomFacility) {
+          this.dormRoomFacility.push(params.roomFacility[k]);
+        }
+      }
+
     }
 
   ionViewDidLoad() {
