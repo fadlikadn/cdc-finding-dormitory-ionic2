@@ -74,39 +74,39 @@ export class ModalsDormPage {
         this.dormPrice = dorm.price;
         this.dormNotes = dorm.notes;
         this.dormDescription = dorm.description;
-        this.dormRoomFacility = dorm.roomFacility;
-        this.dormBathroom = dorm.bathroom;
-        this.dormGeneralFacility = dorm.generalFacility;
-        this.dormParking = dorm.parking;
-        this.dormPublicFacility = dorm.publicFacility;
+        // this.dormRoomFacility = dorm.roomFacility;
+        // this.dormBathroom = dorm.bathroom;
+        // this.dormGeneralFacility = dorm.generalFacility;
+        // this.dormParking = dorm.parking;
+        // this.dormPublicFacility = dorm.publicFacility;
         this.dormId = dorm.$key;
         this.dormImage = dorm.image;
         this.dormImageExist = dorm.image;
 
-        console.log(dorm);
-        console.log(this.dormId);
+        // console.log(dorm);
+        // console.log(this.dormId);
 
-        console.log(this.dormRoomFacility);
+        // console.log(this.dormRoomFacility);
         for (k in dorm.roomFacility) {
           this.dormRoomFacility.push(dorm.roomFacility[k].name);
         }
-        console.log(this.dormRoomFacility);
+        // console.log(this.dormRoomFacility);
 
-        // for (k in dorm.bathroom) {
-        //   this.dormBathroom.push(dorm.bathroom[k].name);
-        // }
+        for (k in dorm.bathroom) {
+          this.dormBathroom.push(dorm.bathroom[k].name);
+        }
 
-        // for (k in dorm.generalFacility) {
-        //   this.dormGeneralFacility.push(dorm.generalFacility[k].name);
-        // }
+        for (k in dorm.generalFacility) {
+          this.dormGeneralFacility.push(dorm.generalFacility[k].name);
+        }
 
-        // for (k in dorm.parking) {
-        //   this.dormParking.push(dorm.parking[k].name);
-        // }
+        for (k in dorm.parking) {
+          this.dormParking.push(dorm.parking[k].name);
+        }
 
-        // for (k in dorm.publicFacility) {
-        //   this.dormPublicFacility.push(dorm.publicFacility[k].name);
-        // }
+        for (k in dorm.publicFacility) {
+          this.dormPublicFacility.push(dorm.publicFacility[k].name);
+        }
 
         this.isEditable = true;
         this.title = dorm.name;

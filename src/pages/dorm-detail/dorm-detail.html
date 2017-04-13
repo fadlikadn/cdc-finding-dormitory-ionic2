@@ -41,25 +41,23 @@
 
     <ion-label stacked>Facility</ion-label>
     <div *ngFor="let room of dorm.roomFacility">
-        <!--<span>{{ dorm.roomFacility }}</span>-->
         <span>{{ room.name }}</span>
     </div>
 
-    <!--<ion-label stacked>General Facility</ion-label>
+    <ion-label stacked>General Facility</ion-label>
     <div *ngFor="let general of dorm.generalFacility">
-        <span>{{ room.name }}</span>
-    </div>-->
+        <span>{{ general.name }}</span>
+    </div>
 
-    <!--<ion-label stacked>Public Facility</ion-label>
+    <ion-label stacked>Public Facility</ion-label>
     <div *ngFor="let public of dorm.publicFacility">
         <span>{{ public.name}}</span>
-    </div>-->
+    </div>
 
-    <!--<div><span>{{ dorm.publicFacility }}</span></div>-->
     <ion-label stacked>Notes</ion-label>
     <p>{{ dorm.notes }}</p>
 
-    <!--<ion-label stacked>Bathroom</ion-label>
+    <ion-label stacked>Bathroom</ion-label>
     <div *ngFor="let room of dorm.bathroom">
         <span>{{ room.name }}</span>
     </div>
@@ -67,9 +65,6 @@
     <ion-label stacked>Parking</ion-label>
     <div *ngFor="let parking of dorm.parking">
         <span>{{ parking.name }}</span>
-    </div>-->
-
-    <!--<div><span>{{ dorm.bathroom }}</span></div>
-    <div><span>{{ dorm.parking }}</span></div>-->
+    </div>
 
 </ion-content>
