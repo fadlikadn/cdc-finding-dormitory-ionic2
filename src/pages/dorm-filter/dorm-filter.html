@@ -34,6 +34,7 @@
         <ion-item>
             <ion-label stacked>Period: </ion-label>
             <ion-select formControlName="period" [(ngModel)]="dormPeriod">
+                <ion-option value="">All</ion-option>
                 <ion-option value="Daily">Daily</ion-option>
                 <ion-option value="Weekly">Weekly</ion-option>
                 <ion-option value="Monthly">Monthly</ion-option>
@@ -42,37 +43,39 @@
         </ion-item>
 
         <ion-item>
-            <ion-label stacked>Price Range</ion-label>
+            <ion-label stacked>Minimum Price</ion-label>
             <ion-select formControlName="minPrice" [(ngModel)]="dormMinPrice">
-                <ion-option value="200">Rp 200.000</ion-option>
-                <ion-option value="400">Rp 400.000</ion-option>
-                <ion-option value="600">Rp 600.000</ion-option>
-                <ion-option value="800">Rp 800.000</ion-option>
-                <ion-option value="1000">Rp 1.000.000</ion-option>
-                <ion-option value="1500">Rp 1.500.000</ion-option>
-                <ion-option value="2000">Rp 2.000.000</ion-option>
-                <ion-option value="3000">Rp 3.000.000</ion-option>
-                <ion-option value="5000">Rp 5.000.000</ion-option>
-                <ion-option value="7000">Rp 7.000.000</ion-option>
+                <ion-option value="">All</ion-option>
+                <ion-option value="200000">Rp 200.000</ion-option>
+                <ion-option value="400000">Rp 400.000</ion-option>
+                <ion-option value="600000">Rp 600.000</ion-option>
+                <ion-option value="800000">Rp 800.000</ion-option>
+                <ion-option value="1000000">Rp 1.000.000</ion-option>
+                <ion-option value="1500000">Rp 1.500.000</ion-option>
+                <ion-option value="2000000">Rp 2.000.000</ion-option>
+                <ion-option value="3000000">Rp 3.000.000</ion-option>
+                <ion-option value="5000000">Rp 5.000.000</ion-option>
+                <ion-option value="7000000">Rp 7.000.000</ion-option>
             </ion-select>
         </ion-item>
 
         <ion-item>
-            <ion-label stacked>to</ion-label>
+            <ion-label stacked>Maximum Price</ion-label>
             <ion-select formControlName="maxPrice" [(ngModel)]="dormMaxPrice">
-                <ion-option value="200">Rp 200.000</ion-option>
-                <ion-option value="400">Rp 400.000</ion-option>
-                <ion-option value="600">Rp 600.000</ion-option>
-                <ion-option value="800">Rp 800.000</ion-option>
-                <ion-option value="1000">Rp 1.000.000</ion-option>
-                <ion-option value="1500">Rp 1.500.000</ion-option>
-                <ion-option value="2000">Rp 2.000.000</ion-option>
-                <ion-option value="3000">Rp 3.000.000</ion-option>
-                <ion-option value="5000">Rp 5.000.000</ion-option>
-                <ion-option value="7000">Rp 7.000.000</ion-option>
-                <ion-option value="10000">Rp 10.000.000</ion-option>
-                <ion-option value="15000">Rp 15.000.000</ion-option>
-                <ion-option value="20000">Rp 20.000.000</ion-option>
+                <ion-option value="">All</ion-option>
+                <ion-option value="200000">Rp 200.000</ion-option>
+                <ion-option value="400000">Rp 400.000</ion-option>
+                <ion-option value="600000">Rp 600.000</ion-option>
+                <ion-option value="800000">Rp 800.000</ion-option>
+                <ion-option value="1000000">Rp 1.000.000</ion-option>
+                <ion-option value="1500000">Rp 1.500.000</ion-option>
+                <ion-option value="2000000">Rp 2.000.000</ion-option>
+                <ion-option value="3000000">Rp 3.000.000</ion-option>
+                <ion-option value="5000000">Rp 5.000.000</ion-option>
+                <ion-option value="7000000">Rp 7.000.000</ion-option>
+                <ion-option value="10000000">Rp 10.000.000</ion-option>
+                <ion-option value="15000000">Rp 15.000.000</ion-option>
+                <ion-option value="20000000">Rp 20.000.000</ion-option>
             </ion-select>
         </ion-item>
 

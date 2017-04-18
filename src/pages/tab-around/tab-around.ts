@@ -4,6 +4,7 @@ import 'rxjs/add/operator/map';
 import { AuthService } from '../../providers/auth-service';
 import { DatabaseDorm } from '../../providers/database-dorm';
 import { Preloader } from '../../providers/preloader';
+import { Toast } from '../../providers/toast';
 import * as firebase from 'firebase';
 import { FormControl } from '@angular/forms';
 import 'rxjs/Rx';
@@ -32,6 +33,7 @@ import { DormFilterPage } from '../dorm-filter/dorm-filter';
 export class TabAroundPage {
 
   public dorms: any;
+  public dormsTemp: any;
   public searchTerm: string = '';
   public searchControl: FormControl;
   public authService: AuthService;
@@ -48,6 +50,7 @@ export class TabAroundPage {
     public platform: Platform,
     public _DBDorm: DatabaseDorm,
     public _LOADER: Preloader,
+    public _TOAST: Toast,
     public modalCtrl: ModalController,
     public authServiceParams: AuthService
     ) {
@@ -69,7 +72,6 @@ export class TabAroundPage {
     this.initializeItems();
 
     var q = searchbar.srcElement.value;
-    console.log(q);
 
     if (!q) {
       return;
@@ -87,7 +89,6 @@ export class TabAroundPage {
 
   loadAndParseDorms() {
     this.dorms = this._DBDorm.render2();
-    console.log(this.dorms);
 
     this._LOADER.hidePreloader();
   }
@@ -116,20 +117,60 @@ export class TabAroundPage {
     modal.onDidDismiss((data) => {
       if (data) {
         this.filterParams = data;
-        console.log(data);
         this._LOADER.displayPreloader();
         // query dorm by selected filter
         if (data.gender !== undefined) {
             this.dorms = this._DBDorm.render2();
             if (data.gender !== '') {
-                console.log('search by gender');
+                // console.log('search by gender');
                 this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => dorm.gender == data.gender));
-                console.log(this.dorms);
+                // console.log(this.dorms);
             }
+
+            if (data.period !== '') {
+                // console.log('search by period');
+                this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => dorm.period == data.period));
+                // console.log(this.dorms);
+            }
+
+            if (data.minPrice !== '') {
+                this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => parseInt(dorm.price) >= parseInt(data.minPrice) ));
+            }
+
+            if (data.maxPrice !== '') {
+                this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => parseInt(dorm.price) <= parseInt(data.maxPrice) ));
+            }
+
+            this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => {
+              let isSuperset = data.roomFacility.every(function (val) {
+                let result = false;
+                for (var i = 0; i < dorm.roomFacility.length; i++) {
+                  if (dorm.roomFacility[i].name === val) {
+                    result = true;
+                    break;
+                  }
+                }
+                return result;
+              });
+              return isSuperset;
+            }  ));
+            // console.log(data);
         } else  {
             this.dorms = this._DBDorm.render2();
-            console.log(this.dorms);
+            // console.log(this.dorms);
         }
+
+        // console.log('length');
+        let length = 0;
+        this.dorms.subscribe(result => { 
+          length = result.length;
+          // console.log(length);
+          if (length <= 0) {
+            this._TOAST.showToastFailed();
+          }
+        });
+        // console.log(length);
+        // console.log(this.dorms);
 
         this._LOADER.hidePreloader();
       }

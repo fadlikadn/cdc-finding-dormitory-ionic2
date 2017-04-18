@@ -39,6 +39,7 @@ import { DatabaseUser } from '../providers/database-user';
 import { DatabaseDorm } from '../providers/database-dorm';
 import { Preloader } from '../providers/preloader';
 import { Image } from '../providers/image';
+import { Toast } from '../providers/toast';
 
 import { ConnectivityService } from '../providers/connectivity-service';
 
@@ -119,6 +120,7 @@ firebase.initializeApp(firebaseConfig);
     Preloader,
     ConnectivityService,
     Image,
+    Toast,
   ]
 })
 export class AppModule {}
