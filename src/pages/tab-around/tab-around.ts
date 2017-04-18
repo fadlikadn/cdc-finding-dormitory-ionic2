@@ -141,6 +141,7 @@ export class TabAroundPage {
                 this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => parseInt(dorm.price) <= parseInt(data.maxPrice) ));
             }
 
+            // check value array 1 is exist in array 2
             this.dorms = this.dorms.map(_dorms => _dorms.filter(dorm => {
               let isSuperset = data.roomFacility.every(function (val) {
                 let result = false;
