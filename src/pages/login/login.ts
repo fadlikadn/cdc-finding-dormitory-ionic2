@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
-import { Page1 } from '../page1/page1';
+import { UserData } from '../../providers/user-data';
+
 import { HomePage } from '../home/home';
 import { RegisterPage }  from '../register/register';
 import { ResetpwdPage } from '../resetpwd/resetpwd';
@@ -31,7 +32,8 @@ export class LoginPage {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
-    public loadingCtrl: LoadingController) {
+    public loadingCtrl: LoadingController,
+    public userData: UserData) {
       let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.loginForm = formBuilder.group({
           email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_REGEXP)])],
@@ -60,12 +62,14 @@ export class LoginPage {
     } else {
       this.authService.doLogin(this.loginForm.value.email, this.loginForm.value.password).then(authService => {
         // this.navCtrl.setRoot(Page1);
+        this.userData.login(this.loginForm.value.email);
         this.loading = this.loadingCtrl.create({
           dismissOnPageChange: true,
         });
         this.loading.present().then(() => {
           this.loading.dismiss().then(() => {
-            this.navCtrl.setRoot(HomePage);
+            // this.navCtrl.setRoot(HomePage);
+            // this.navCtrl.push(HomePage);
           });
         });
       }, error => {

@@ -3,7 +3,6 @@ import { NavController, AlertController, NavParams, LoadingController } from 'io
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { DatabaseUser } from '../../providers/database-user';
-import { Page1 } from '../page1/page1';
 import { HomePage } from '../home/home';
 
 /*

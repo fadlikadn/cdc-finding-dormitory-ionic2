@@ -5,6 +5,7 @@ import { LoginPage } from '../login/login';
 
 import * as firebase from 'firebase';
 import { AuthService } from '../../providers/auth-service';
+import { UserData } from '../../providers/user-data';
 import { TabAroundPage } from '../tab-around/tab-around';
 import { TabAreaPage } from '../tab-area/tab-area';
 
@@ -27,16 +28,17 @@ export class HomePage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    public authServiceParams: AuthService) {
+    public authServiceParams: AuthService,
+    public userData: UserData) {
 
     this.authService = authServiceParams;
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        console.log('you still haven\'t login');
-        navCtrl.setRoot(LoginPage);
-        // this.rootPage = LoginPage;
-      }
-    });
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //   if (!user) {
+    //     console.log('you still haven\'t login');
+    //     navCtrl.setRoot(LoginPage);
+    //     // this.rootPage = LoginPage;
+    //   }
+    // });
   }
 
   ionViewDidLoad() {
@@ -44,6 +46,7 @@ export class HomePage {
   }
 
   logout() {
+    this.userData.logout();
     this.authService.doLogout();
   }
 
