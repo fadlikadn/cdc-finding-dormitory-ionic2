@@ -7,6 +7,8 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 // import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { Geolocation } from '@ionic-native/geolocation';
+import { NativeGeocoder } from '@ionic-native/native-geocoder';
 
 import { IonicStorageModule } from '@ionic/storage';
 
@@ -14,7 +16,7 @@ import { MyApp } from './app.component';
 
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
-import { ResetpwdPage } from '../pages/resetpwd/resetpwd';
+import { ResetpwdPage } from '../pages/resetpwd/resetpwd';  
 import { HomePage } from '../pages/home/home';
 import { UserListPage } from '../pages/user-list/user-list';
 import { ModalsUserPage } from '../pages/modals-user/modals-user';
@@ -126,6 +128,8 @@ firebase.initializeApp(firebaseConfig);
     Image,
     Toast,
     UserData,
+    Geolocation,
+    NativeGeocoder,
     // InAppBrowser,
   ]
 })
