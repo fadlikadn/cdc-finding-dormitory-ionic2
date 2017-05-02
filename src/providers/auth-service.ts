@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import * as firebase from 'firebase';
 // import { DatabaseUser } from 'database-user';
@@ -29,6 +29,30 @@ export class AuthService {
 
   doLogin(email: string, password: string): firebase.Promise<any> {
     return this.fireAuth.signInWithEmailAndPassword(email, password);
+  }
+
+  doLoginAPI(username: string, password: string): Promise<any> {
+    return new Promise((resolve) => {
+      let url = 'http://172.19.11.114:8000/app_dev.php/login';
+      var headers = new Headers();
+      let options = new RequestOptions({headers: headers});
+
+      let postParams = {
+        username: username,
+        password: password,
+      }
+
+      this.http.post(url, postParams, options).subscribe(data => {
+        // console.log('data');
+        // return data;
+        resolve(data);
+      }, error => {
+        // console.log('error');
+        // return error;
+        resolve(error);
+      });
+    });
+      
   }
 
   register(email: string, password: string, user: any): firebase.Promise<any> {

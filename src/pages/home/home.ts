@@ -47,7 +47,7 @@ export class HomePage {
 
   logout() {
     this.userData.logout();
-    this.authService.doLogout();
+    // this.authService.doLogout();
   }
 
 }

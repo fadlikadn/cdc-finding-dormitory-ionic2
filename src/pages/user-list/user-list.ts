@@ -41,12 +41,12 @@ export class UserListPage {
     private _LOADER: Preloader,
     private modalCtrl: ModalController,
     public authServiceParams: AuthService) {
-
-    firebase.auth().onAuthStateChanged(function(user) {
-      if (!user) {
-        navCtrl.setRoot(LoginPage);
-      }
-    });
+    // disable firebase auth
+    // firebase.auth().onAuthStateChanged(function(user) {
+    //   if (!user) {
+    //     navCtrl.setRoot(LoginPage);
+    //   }
+    // });
     this.searchControl = new FormControl();
     this.authService = authServiceParams;
     this.loadedUserList = this._DB.render2();

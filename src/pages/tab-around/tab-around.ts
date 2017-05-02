@@ -54,11 +54,12 @@ export class TabAroundPage {
     public modalCtrl: ModalController,
     public authServiceParams: AuthService
     ) {
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (!user) {
-          navCtrl.setRoot(LoginPage);
-        }
-      });
+      // Disable Firebase Auth
+      // firebase.auth().onAuthStateChanged(function (user) {
+      //   if (!user) {
+      //     navCtrl.setRoot(LoginPage);
+      //   }
+      // });
       this.searchControl = new FormControl();
       this.authService = authServiceParams;
       this.loadedDormList = this._DBDorm.render2();

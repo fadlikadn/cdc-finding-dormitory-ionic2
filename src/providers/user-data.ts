@@ -16,6 +16,10 @@ export class UserData {
 
   HAS_LOGGED_IN = 'hasLoggedIn';
   HAS_SEEN_TUTORIAL = 'hasSeenTutorial';
+  TOKEN = 'token';
+
+  public OK = 'OK';
+  public ERROR = 'ERROR';
 
   constructor(
     public events: Events,
@@ -30,12 +34,20 @@ export class UserData {
     this.events.publish('user:login');
   }
 
+  loginToken(username: string, token: string): void {
+    this.storage.set(this.HAS_LOGGED_IN, true);
+    this.storage.set(this.TOKEN, token);
+    this.setUsername(username);
+    this.events.publish('user:login');
+  }
+
   signup(username: string): void {
     this.storage
   }
 
   logout(): void {
     this.storage.remove(this.HAS_LOGGED_IN);
+    this.storage.remove(this.TOKEN);
     this.storage.remove('username');
     this.events.publish('user:logout');
   }

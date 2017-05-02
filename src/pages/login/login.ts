@@ -3,6 +3,7 @@ import { NavController, AlertController, NavParams, LoadingController } from 'io
 import { FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../providers/auth-service';
 import { UserData } from '../../providers/user-data';
+import { Http, Headers, RequestOptions } from '@angular/http';
 
 import { HomePage } from '../home/home';
 import { RegisterPage }  from '../register/register';
@@ -33,11 +34,15 @@ export class LoginPage {
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public loadingCtrl: LoadingController,
-    public userData: UserData) {
+    public userData: UserData,
+    public http: Http) {
       let EMAIL_REGEXP = /^[a-z0-9!#$%&'*+\/=?^_`{|}~.-]+@[a-z0-9]([a-z0-9-]*[a-z0-9])?(\.[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$/i;
       this.loginForm = formBuilder.group({
-          email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_REGEXP)])],
-          password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+          // disable email validation
+          // email: ['', Validators.compose([Validators.required, Validators.pattern(EMAIL_REGEXP)])],
+          // password: ['', Validators.compose([Validators.minLength(6), Validators.required])]
+          email: [''],
+          password: [''],
       });
   }
 
@@ -58,35 +63,88 @@ export class LoginPage {
     this.submitAttempt = true;
 
     if (!this.loginForm.valid) {
-      console.log(this.loginForm.value);
+        console.log(this.loginForm.value);
     } else {
-      this.authService.doLogin(this.loginForm.value.email, this.loginForm.value.password).then(authService => {
-        // this.navCtrl.setRoot(Page1);
-        this.userData.login(this.loginForm.value.email);
-        this.loading = this.loadingCtrl.create({
-          dismissOnPageChange: true,
-        });
-        this.loading.present().then(() => {
+        this.authService.doLoginAPI(this.loginForm.value.email, this.loginForm.value.password).then(authService => {
+          console.log(authService);
+          // console.log(authService._body);
+          let body = JSON.parse(authService._body);
+          console.log(body);
+          // console.log(body.status);
+          // console.log(this.userData.OK);
+
+          if (body.status == this.userData.OK) {
+              console.log(body.status);
+              this.userData.loginToken(this.loginForm.value.email, body.token);
+              this.loading = this.loadingCtrl.create({
+                // dismissOnPageChange: true,
+              });
+              this.loading.present().then(() => {
+                this.loading.dismiss().then(() => {
+
+                });
+              });
+          } else if (body.status == this.userData.ERROR) {
+              console.log(body.status);
+              // do nothing
+              let alert = this.alertCtrl.create({
+                message: body.reason,
+                buttons: [
+                  {
+                    text: "Ok",
+                    role: "cancel"
+                  }
+                ]
+              });
+              alert.present();
+          }
+        }, error => {
           this.loading.dismiss().then(() => {
-            // this.navCtrl.setRoot(HomePage);
-            // this.navCtrl.push(HomePage);
+            let alert = this.alertCtrl.create({
+              message: error.message,
+              buttons: [
+                {
+                  text: "Ok",
+                  role: "cancel"
+                }
+              ]
+            });
+            alert.present();
           });
         });
-      }, error => {
-        this.loading.dismiss().then(() => {
-          let alert = this.alertCtrl.create({
-            message: error.message,
-            buttons: [
-              {
-                text: "Ok",
-                role: "cancel"
-              }
-            ]
-          });
-          alert.present();
-        });
-      });
     }
+
+    // login to Firebase, backup
+    // if (!this.loginForm.valid) {
+    //   console.log(this.loginForm.value);
+    // } else {
+    //   this.authService.doLogin(this.loginForm.value.email, this.loginForm.value.password).then(authService => {
+    //     // this.navCtrl.setRoot(Page1);
+    //     this.userData.login(this.loginForm.value.email);
+    //     this.loading = this.loadingCtrl.create({
+    //       dismissOnPageChange: true,
+    //     });
+    //     this.loading.present().then(() => {
+    //       this.loading.dismiss().then(() => {
+    //         // this.navCtrl.setRoot(HomePage);
+    //         // this.navCtrl.push(HomePage);
+    //       });
+    //     });
+    //   }, error => {
+    //     this.loading.dismiss().then(() => {
+    //       let alert = this.alertCtrl.create({
+    //         message: error.message,
+    //         buttons: [
+    //           {
+    //             text: "Ok",
+    //             role: "cancel"
+    //           }
+    //         ]
+    //       });
+    //       alert.present();
+    //     });
+    //   });
+    // }
   }
 
   ionViewDidLoad() {
