@@ -4,6 +4,10 @@ import { NavController, NavParams, ToastController } from 'ionic-angular';
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
 
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Storage } from '@ionic/storage';
+import 'rxjs/add/operator/map';
+
 /*
   Generated class for the TabArea page.
 
@@ -22,6 +26,8 @@ export class TabAreaPage {
   @ViewChild('map') mapElement: ElementRef;
   map: any;
   coords: any;
+  dorms: any;
+  token: any;
 
   constructor(
     public navCtrl: NavController, 
@@ -29,16 +35,43 @@ export class TabAreaPage {
     public geolocation: Geolocation,
     public geocoder: NativeGeocoder,
     public toaster: ToastController,
+    public http: Http,
+    public storage: Storage,
     // public locac: LocationAccuracy,
     ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TabAreaPage');
-    // this.coords = this.geolocate();
-    // console.log(this.coords);
-    // console.log(this.coords.__zone_symbol__value);
+    
+    // get dorms list from API
+
+    this.getDormsList();
     this.geolocate();
     // this.loadMap();
+  }
+
+  getDormsList(): any {
+    let url = 'http://172.19.11.114:8000/app_dev.php/api/dormitory/show';
+    // console.log(this.storage.get('token'));
+    this.storage.get('token').then((value) => {
+      console.log(value);
+      this.token = value;
+    });
+
+    console.log(this.token);
+    var headers = new Headers({
+      'Authorization': 'Bearer' + ' '
+    });
+    let options = new RequestOptions({headers: headers});
+
+    let postParams = {
+      ne_latitude: -6.872652934261064,
+      ne_longitude: 107.67946125439448,
+      sw_latitude: -6.957859223694296,
+      sw_longitude: 107.56616474560542
+    };
+
+    // this.http.post
   }
 
   geolocate(): Promise<any> {
@@ -76,10 +109,12 @@ export class TabAreaPage {
     // console.log(this.coords);
     // let latLng = new google.maps.LatLng(-7.800683, 110.396568);
     let latLng = new google.maps.LatLng(latitude, longitude);
+    let bandungCoords = new google.maps.LatLng(-6.9174639, 107.6191228);
 
     let mapOptions = {
-      center: latLng,
-      zoom: 15,
+      // center: latLng,
+      center: bandungCoords,
+      zoom: 12,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     }
 
