@@ -59,6 +59,7 @@ export class TabAreaPage {
       console.log(body);
 
       body.data.forEach(dorm => {
+        console.log(dorm);
         let dormCoord = new google.maps.LatLng(dorm.latitude, dorm.longitude);
         var marker = new google.maps.Marker({position: dormCoord, title: dorm.name});
         marker.setMap(this.map);
