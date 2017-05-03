@@ -1,12 +1,12 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { NavController, NavParams, ToastController } from 'ionic-angular';
-
 import { Geolocation, Geoposition } from '@ionic-native/geolocation';
 import { NativeGeocoder, NativeGeocoderReverseResult } from '@ionic-native/native-geocoder';
-
 import { Http, Headers, RequestOptions } from '@angular/http';
 import { Storage } from '@ionic/storage';
 import 'rxjs/add/operator/map';
+
+import { DormService } from '../../providers/dorm-service';
 
 /*
   Generated class for the TabArea page.
@@ -37,41 +37,33 @@ export class TabAreaPage {
     public toaster: ToastController,
     public http: Http,
     public storage: Storage,
+    public dormService: DormService,
     // public locac: LocationAccuracy,
     ) {}
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TabAreaPage');
     
-    // get dorms list from API
-
-    this.getDormsList();
     this.geolocate();
+    // get dorms list from API
+    this.getDormsList();
     // this.loadMap();
   }
 
-  getDormsList(): any {
-    let url = 'http://172.19.11.114:8000/app_dev.php/api/dormitory/show';
-    // console.log(this.storage.get('token'));
-    this.storage.get('token').then((value) => {
-      console.log(value);
-      this.token = value;
+  getDormsList() {
+    this.dormService.getDormMapCoordinate(-6.872652934261064, 107.67946125439448, -6.957859223694296, 107.56616474560542).then(dormService => {
+      console.log('Get Dorm List');
+      console.log(dormService);
+
+      let body = JSON.parse(dormService._body);
+      console.log(body);
+
+      body.data.forEach(dorm => {
+        let dormCoord = new google.maps.LatLng(dorm.latitude, dorm.longitude);
+        var marker = new google.maps.Marker({position: dormCoord, title: dorm.name});
+        marker.setMap(this.map);
+      });
     });
-
-    console.log(this.token);
-    var headers = new Headers({
-      'Authorization': 'Bearer' + ' '
-    });
-    let options = new RequestOptions({headers: headers});
-
-    let postParams = {
-      ne_latitude: -6.872652934261064,
-      ne_longitude: 107.67946125439448,
-      sw_latitude: -6.957859223694296,
-      sw_longitude: 107.56616474560542
-    };
-
-    // this.http.post
   }
 
   geolocate(): Promise<any> {
@@ -122,7 +114,7 @@ export class TabAreaPage {
     // console.log(this.map);
 
     // Add Marker
-    var centerMarker = new google.maps.Marker({position: latLng, title: 'Current Position'});
+    var centerMarker = new google.maps.Marker({position: bandungCoords, title: 'Current Position'});
     centerMarker.setMap(this.map);
   }
 

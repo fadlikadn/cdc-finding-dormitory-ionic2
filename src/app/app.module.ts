@@ -44,6 +44,7 @@ import { Image } from '../providers/image';
 import { Toast } from '../providers/toast';
 import { ConnectivityService } from '../providers/connectivity-service';
 import { UserData }from '../providers/user-data';
+import { DormService } from '../providers/dorm-service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyAYy7LtPwxu_PB9mEqxkbp1GvMaJxB7hJA",
@@ -130,6 +131,7 @@ firebase.initializeApp(firebaseConfig);
     UserData,
     Geolocation,
     NativeGeocoder,
+    DormService,
     // InAppBrowser,
   ]
 })
